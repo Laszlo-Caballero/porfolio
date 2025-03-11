@@ -1,12 +1,13 @@
 import { Tecnology } from "@/Interfaces/types";
 import Image from "next/image";
 import { Typography } from "../Typography/Typography";
+import Link from "next/link";
 
 interface CardProps {
   title?: string;
   description?: string;
   tecnologies?: Tecnology[];
-  githubUrl?: string;
+  githubUrl: string;
   image: string;
 }
 
@@ -18,7 +19,11 @@ export default function Card({
   tecnologies,
 }: CardProps) {
   return (
-    <div className="w-full h-full flex flex-col rounded-2xl bg-primary-black-2">
+    <Link
+      className="w-full h-full flex flex-col rounded-2xl bg-primary-black-2"
+      href={githubUrl}
+      target="_blank"
+    >
       <Image
         src={image}
         alt="photo proyect"
@@ -52,6 +57,6 @@ export default function Card({
           ))}
         </div>
       </div>
-    </div>
+    </Link>
   );
 }

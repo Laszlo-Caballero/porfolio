@@ -38,3 +38,4 @@ export const Typography: FC<TypographyProps> = forwardRef<
     </Component>
   );
 });
+Typography.displayName = "Typography";
