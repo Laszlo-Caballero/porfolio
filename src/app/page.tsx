@@ -1,16 +1,12 @@
-import { DownloadIcon } from "@/assets/DownloadIcon";
-import { GithubIcon } from "@/assets/GithubIcon";
-import { LinkedlnIcon } from "@/assets/LinkedlnIcon";
-import { TelegramIcon } from "@/assets/TelegramIcon";
 import { WorkIcon } from "@/assets/WorkIcon";
 import Hero from "@/components/layout/Hero/Hero";
-import ButtonLink from "@/components/ui/ButtonLink/ButtonLink";
-import Nav from "@/components/ui/Nav/Nav";
 import TimeLine from "@/components/ui/TimeLine/TimeLine";
 import { Typography } from "@/components/ui/Typography/Typography";
-import Image from "next/image";
+import { GetExperience } from "@/Services/GetExperience";
 
-export default function Home() {
+export default async function Home() {
+  const data = await GetExperience();
+
   return (
     <main className="w-full max-w-[1440px] h-full flex-1 flex flex-col items-center ">
       <Hero />
@@ -23,15 +19,20 @@ export default function Home() {
           Experiencia
         </Typography>
         <div className="mt-4">
-          <TimeLine
-            title="Ingeniero de Software"
-            description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto porro autem earum voluptatibus suscipit commodi, deserunt facilis? Tenetur harum eos fugit? Hic nam ab repellat recusandae qui aut soluta dolorem."
-            name="Empresa"
-            date="2019 - 2021"
-          />
+          {data.body.map((experience) => (
+            <TimeLine
+              key={experience._id}
+              title={experience.title}
+              description={experience.description}
+              name={experience.company}
+              date={experience.time}
+              image={experience.urlImage}
+            />
+          ))}
           <TimeLine
             title="Con disposición para asumir nuevos retos que me ayuden a seguir evolucionando."
             disabled
+            image=""
           />
         </div>
       </div>

@@ -9,6 +9,7 @@ interface TimeLineProps {
   name?: string;
   date?: string;
   disabled?: boolean;
+  image: string;
 }
 
 export default function TimeLine({
@@ -17,6 +18,7 @@ export default function TimeLine({
   date,
   description,
   disabled,
+  image,
 }: TimeLineProps) {
   return (
     <div className=" w-full flex flex-col max-w-[800px]">
@@ -42,7 +44,7 @@ export default function TimeLine({
               className="mt-3.5 flex items-center gap-x-2"
             >
               <Image
-                src="/photo.png"
+                src={image}
                 alt="photo empresa"
                 className="w-[34px] h-[34px]"
                 width={34}
