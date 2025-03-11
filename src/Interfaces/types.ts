@@ -13,3 +13,18 @@ export interface ExperienceResponsive {
   time: string;
   __v: number;
 }
+export interface ProyectResponsive {
+  _id: string;
+  proyectId: string;
+  title: string;
+  description: string;
+  urlImage: string;
+  tecnologies: Tecnology[];
+  githubUrl: string;
+  __v: number;
+}
+export interface Tecnology {
+  urlImage: string;
+  name: string;
+  _id: string;
+}
