@@ -39,7 +39,7 @@ export async function DELETE(
       body: res,
       status: 200,
     });
-  } catch (error) {
+  } catch {
     return NextResponse.json("Internal Server Error", { status: 500 });
   }
 }

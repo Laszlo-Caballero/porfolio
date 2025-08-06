@@ -1,29 +1,26 @@
 import "reflect-metadata";
-import { CreateProyectDto } from "@/dtos/projects/create-proyect.dto";
+import { CreateExperienceDto } from "@/dtos/experience/create-experience.dto";
 import connectMongoDB from "@/lib/mongo";
 import { Validate } from "@/lib/validateDto";
-import Project from "@/schemas/projects/project.schema";
+import { Experience } from "@/schemas/experience/experience.schema";
 import { NextRequest, NextResponse } from "next/server";
 import { v4 as uuid } from "uuid";
 
 export async function GET() {
   await connectMongoDB();
 
-  const projects = await Project.find();
+  const experience = await Experience.find();
 
-  return new NextResponse(
-    JSON.stringify({
-      message: "All projects",
-      body: projects,
-      status: 200,
-    })
-  );
+  return NextResponse.json({
+    message: "All experiences",
+    body: experience,
+    status: 200,
+  });
 }
 
 export async function POST(req: NextRequest) {
-  const body: CreateProyectDto = await req.json();
-
-  const errors = await Validate(CreateProyectDto, body);
+  const body: CreateExperienceDto = await req.json();
+  const errors = await Validate(CreateExperienceDto, body);
 
   if (errors.length > 0) {
     return new NextResponse(
@@ -38,17 +35,17 @@ export async function POST(req: NextRequest) {
 
   await connectMongoDB();
   const id = uuid();
-  const newProject = await Project.create({
-    projectId: id,
+  const newExperience = await Experience.create({
+    experienceId: id,
     ...body,
   });
 
-  const savedProject = await newProject.save();
+  const savedExperience = await newExperience.save();
 
   return new NextResponse(
     JSON.stringify({
-      message: "Proyect created",
-      body: savedProject,
+      message: "Experience created",
+      body: savedExperience,
       status: 201,
     }),
     { status: 201 }

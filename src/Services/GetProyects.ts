@@ -1,8 +1,21 @@
-import { Env } from "@/Config/env";
 import { ProyectResponsive, Responsive } from "@/Interfaces/types";
-import axios from "axios";
+import connectMongoDB from "@/lib/mongo";
+import Project from "@/schemas/projects/project.schema";
 
 export async function GetProyects(): Promise<Responsive<ProyectResponsive[]>> {
-  const res = await axios.get(`${Env.API_URL}/proyects`);
-  return res.data;
+  await connectMongoDB();
+  const data = await Project.find();
+
+  const parseData = data.map((item) => {
+    return {
+      ...item.toObject(),
+      _id: item._id.toString(),
+    };
+  }) as ProyectResponsive[];
+
+  return {
+    body: parseData,
+    message: "All experiences",
+    status: 200,
+  };
 }
