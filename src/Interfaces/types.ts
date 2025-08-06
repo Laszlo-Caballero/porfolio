@@ -1,3 +1,5 @@
+import { UploadApiErrorResponse, UploadApiResponse } from "cloudinary";
+
 export interface Responsive<T> {
   message: string;
   body: T;
@@ -28,3 +30,5 @@ export interface Tecnology {
   name: string;
   _id: string;
 }
+
+export type CloudinaryResponse = UploadApiResponse | UploadApiErrorResponse;
