@@ -2,6 +2,7 @@ import { CodeIcon } from '@/assets/CodeIcon';
 import EngineerIcon from '@/assets/EngineerIcon';
 import { WorkIcon } from '@/assets/WorkIcon';
 import Hero from '@/components/layout/Hero/Hero';
+import FormContact from '@/components/shared/formContact';
 import Card from '@/components/ui/Card/Card';
 import TimeLine from '@/components/ui/TimeLine/TimeLine';
 import { Typography } from '@/components/ui/Typography/Typography';
@@ -95,6 +96,7 @@ export default async function Home() {
           ))}
         </Marquee>
       </div>
+      <FormContact />
     </main>
   );
 }
