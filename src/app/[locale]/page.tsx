@@ -98,7 +98,7 @@ export default async function Home() {
             />
           ))}
         </Marquee>
-        <Marquee className="mt-12" speed={70} autoFill direction="right">
+        <Marquee className="mt-4" speed={70} autoFill direction="right">
           {secondMiddle.map((tecnology) => (
             <Image
               key={tecnology._id}
