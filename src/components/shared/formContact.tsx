@@ -31,10 +31,10 @@ export default function FormContact() {
   };
 
   return (
-    <div className="mt-20 mb-40 flex w-full max-w-[1440px] flex-col">
+    <div className="mt-12 mb-40 flex w-full max-w-[1440px] flex-col">
       <Typography
         variant="span"
-        className="flex items-center gap-x-7 px-9 text-2xl font-medium text-white"
+        className="flex items-center gap-x-7 px-9 pb-4 text-2xl font-medium text-white"
       >
         <PhoneIcon className="h-10 w-10" strokeWidth={2} />
         Contacto

@@ -19,12 +19,15 @@ export default async function Home() {
     GetAllTecnologies(),
   ]);
 
-  console.log(tecnologies);
+  const length = tecnologies.body.length;
+
+  const fistMiddle = tecnologies.body.slice(0, Math.floor(length / 2));
+  const secondMiddle = tecnologies.body.slice(Math.floor(length / 2), length);
 
   return (
     <main className="flex h-full w-full flex-1 flex-col items-center">
       <Hero />
-      <div className="flex w-full max-w-[1440px] flex-col px-9 py-2">
+      <div className="flex w-full max-w-[1440px] flex-col px-9 py-12">
         <Typography
           variant="span"
           className="flex w-full items-center gap-x-7 text-2xl font-medium"
@@ -32,7 +35,7 @@ export default async function Home() {
           <WorkIcon className="h-10 w-10 text-white" strokeWidth={2} />
           Experiencia
         </Typography>
-        <div className="mt-4">
+        <div className="mt-12">
           {data.body.map((experience) => (
             <TimeLine
               key={experience._id}
@@ -51,7 +54,7 @@ export default async function Home() {
         </div>
       </div>
 
-      <div className="mt-[38px] flex w-full max-w-[1440px] flex-col px-9">
+      <div className="flex w-full max-w-[1440px] flex-col px-9 py-12">
         <Typography
           variant="span"
           className="flex items-center gap-x-7 text-2xl font-medium text-white"
@@ -59,7 +62,7 @@ export default async function Home() {
           <CodeIcon className="h-10 w-10" strokeWidth={2} />
           Proyectos
         </Typography>
-        <div className="mt-4 grid w-full grid-cols-3 gap-x-4">
+        <div className="mt-12 grid w-full grid-cols-3 gap-x-4">
           {proyects.body.map((proyect) => {
             return (
               <Card
@@ -75,7 +78,7 @@ export default async function Home() {
         </div>
       </div>
 
-      <div className="mt-11 flex flex-col items-center space-y-12">
+      <div className="flex flex-col items-center space-y-12 py-12">
         <Typography
           variant="span"
           className="flex w-[1440px] items-center gap-x-7 px-9 text-2xl font-medium text-white"
@@ -83,8 +86,20 @@ export default async function Home() {
           <EngineerIcon className="h-10 w-10" strokeWidth={2} />
           Tecnologias
         </Typography>
-        <Marquee speed={70}>
-          {tecnologies.body.map((tecnology) => (
+        <Marquee className="mt-12" speed={70} autoFill>
+          {fistMiddle.map((tecnology) => (
+            <Image
+              key={tecnology._id}
+              src={tecnology.urlImage}
+              alt={tecnology.altImage}
+              width={98}
+              height={98}
+              className="ml-5 max-h-[98px] w-auto"
+            />
+          ))}
+        </Marquee>
+        <Marquee className="mt-12" speed={70} autoFill direction="right">
+          {secondMiddle.map((tecnology) => (
             <Image
               key={tecnology._id}
               src={tecnology.urlImage}
