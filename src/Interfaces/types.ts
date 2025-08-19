@@ -31,4 +31,11 @@ export interface Tecnology {
   _id: string;
 }
 
+export interface Tecnologies {
+  _id: string;
+  urlImage: string;
+  altImage: string;
+  __v: number;
+}
+
 export type CloudinaryResponse = UploadApiResponse | UploadApiErrorResponse;

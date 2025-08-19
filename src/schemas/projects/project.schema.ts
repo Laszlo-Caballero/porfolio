@@ -1,6 +1,6 @@
 import mongoose, { Schema } from "mongoose";
 
-const projectSchema = new Schema({
+const projectsSchema = new Schema({
   projectId: String,
   title: String,
   description: String,
@@ -15,6 +15,6 @@ const projectSchema = new Schema({
 });
 
 const Project =
-  mongoose.models.Project || mongoose.model("Project", projectSchema);
+  mongoose.models.Proyects || mongoose.model("Proyects", projectsSchema);
 
 export default Project;

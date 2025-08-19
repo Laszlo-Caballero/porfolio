@@ -10,4 +10,5 @@ export const ExperienceSchema = new Schema({
 });
 
 export const Experience =
-  mongoose.model("Experience", ExperienceSchema) || mongoose.models.Experience;
+  mongoose.models.Experiences ||
+  mongoose.model("Experiences", ExperienceSchema);

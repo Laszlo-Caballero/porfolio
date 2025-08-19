@@ -13,6 +13,8 @@ export async function GetProyects(): Promise<Responsive<ProyectResponsive[]>> {
     };
   }) as ProyectResponsive[];
 
+  console.log("Proyects", parseData);
+
   return {
     body: parseData,
     message: "All experiences",

@@ -1,14 +1,24 @@
 import { CodeIcon } from "@/assets/CodeIcon";
+import EngineerIcon from "@/assets/EngineerIcon";
 import { WorkIcon } from "@/assets/WorkIcon";
 import Hero from "@/components/layout/Hero/Hero";
 import Card from "@/components/ui/Card/Card";
 import TimeLine from "@/components/ui/TimeLine/TimeLine";
 import { Typography } from "@/components/ui/Typography/Typography";
+import { GetAllTecnologies } from "@/Services/GetallTecnologies";
 import { GetExperience } from "@/Services/GetExperience";
 import { GetProyects } from "@/Services/GetProyects";
+import Image from "next/image";
+import Marquee from "react-fast-marquee";
 
 export default async function Home() {
-  const [data, proyects] = await Promise.all([GetExperience(), GetProyects()]);
+  const [data, proyects, tecnologies] = await Promise.all([
+    GetExperience(),
+    GetProyects(),
+    GetAllTecnologies(),
+  ]);
+
+  console.log(tecnologies);
 
   return (
     <main className="w-full max-w-[1440px] h-full flex-1 flex flex-col items-center ">
@@ -62,6 +72,28 @@ export default async function Home() {
             );
           })}
         </div>
+      </div>
+
+      <div className="mt-11 space-y-12">
+        <Typography
+          variant="span"
+          className="text-2xl px-9 font-medium text-white flex items-center gap-x-7"
+        >
+          <EngineerIcon className="w-10 h-10" strokeWidth={2} />
+          Tecnologias
+        </Typography>
+        <Marquee>
+          {tecnologies.body.map((tecnology) => (
+            <Image
+              key={tecnology._id}
+              src={tecnology.urlImage}
+              alt={tecnology.altImage}
+              width={98}
+              height={98}
+              className="ml-5 max-h-[98px] w-auto"
+            />
+          ))}
+        </Marquee>
       </div>
     </main>
   );

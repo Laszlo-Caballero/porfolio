@@ -20,7 +20,7 @@ export default function Card({
 }: CardProps) {
   return (
     <Link
-      className="w-full h-full flex flex-col rounded-2xl bg-primary-black-2"
+      className="w-full h-full flex flex-col rounded-2xl bg-primary-black-2 pb-4"
       href={githubUrl}
       target="_blank"
     >
@@ -41,7 +41,7 @@ export default function Card({
         <div className="flex flex-wrap gap-x-2 mt-4 gap-y-4 h-full ">
           {tecnologies?.map((tecnology) => (
             <span
-              className="bg-sky-950 w-[120px] justify-center gap-x-2  rounded-full py-2 flex items-center"
+              className="bg-sky-950 px-4 justify-center gap-x-2  rounded-full py-2 flex items-center"
               key={tecnology._id}
             >
               <Image
