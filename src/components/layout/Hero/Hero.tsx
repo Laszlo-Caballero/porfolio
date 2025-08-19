@@ -9,7 +9,7 @@ import React from "react";
 
 export default function Hero() {
   return (
-    <div className="w-full flex flex-col pt-8 px-9">
+    <div className="w-full max-w-[1440px] flex flex-col pt-8 px-9">
       <Image
         src="/photo.png"
         alt="Picture of the author"

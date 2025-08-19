@@ -1,15 +1,15 @@
-import { CodeIcon } from "@/assets/CodeIcon";
-import EngineerIcon from "@/assets/EngineerIcon";
-import { WorkIcon } from "@/assets/WorkIcon";
-import Hero from "@/components/layout/Hero/Hero";
-import Card from "@/components/ui/Card/Card";
-import TimeLine from "@/components/ui/TimeLine/TimeLine";
-import { Typography } from "@/components/ui/Typography/Typography";
-import { GetAllTecnologies } from "@/Services/GetallTecnologies";
-import { GetExperience } from "@/Services/GetExperience";
-import { GetProyects } from "@/Services/GetProyects";
-import Image from "next/image";
-import Marquee from "react-fast-marquee";
+import { CodeIcon } from '@/assets/CodeIcon';
+import EngineerIcon from '@/assets/EngineerIcon';
+import { WorkIcon } from '@/assets/WorkIcon';
+import Hero from '@/components/layout/Hero/Hero';
+import Card from '@/components/ui/Card/Card';
+import TimeLine from '@/components/ui/TimeLine/TimeLine';
+import { Typography } from '@/components/ui/Typography/Typography';
+import { GetAllTecnologies } from '@/Services/GetallTecnologies';
+import { GetExperience } from '@/Services/GetExperience';
+import { GetProyects } from '@/Services/GetProyects';
+import Image from 'next/image';
+import Marquee from 'react-fast-marquee';
 
 export default async function Home() {
   const [data, proyects, tecnologies] = await Promise.all([
@@ -21,14 +21,14 @@ export default async function Home() {
   console.log(tecnologies);
 
   return (
-    <main className="w-full max-w-[1440px] h-full flex-1 flex flex-col items-center ">
+    <main className="flex h-full w-full flex-1 flex-col items-center">
       <Hero />
-      <div className="flex flex-col px-9 w-full py-2">
+      <div className="flex w-full max-w-[1440px] flex-col px-9 py-2">
         <Typography
           variant="span"
-          className="flex items-center w-full text-2xl font-medium gap-x-7"
+          className="flex w-full items-center gap-x-7 text-2xl font-medium"
         >
-          <WorkIcon className="text-white w-10 h-10" strokeWidth={2} />
+          <WorkIcon className="h-10 w-10 text-white" strokeWidth={2} />
           Experiencia
         </Typography>
         <div className="mt-4">
@@ -50,15 +50,15 @@ export default async function Home() {
         </div>
       </div>
 
-      <div className="mt-[38px] w-full flex flex-col px-9">
+      <div className="mt-[38px] flex w-full max-w-[1440px] flex-col px-9">
         <Typography
           variant="span"
-          className="text-2xl font-medium text-white flex items-center gap-x-7"
+          className="flex items-center gap-x-7 text-2xl font-medium text-white"
         >
-          <CodeIcon className="w-10 h-10" strokeWidth={2} />
+          <CodeIcon className="h-10 w-10" strokeWidth={2} />
           Proyectos
         </Typography>
-        <div className="w-full grid grid-cols-3 gap-x-4 mt-4">
+        <div className="mt-4 grid w-full grid-cols-3 gap-x-4">
           {proyects.body.map((proyect) => {
             return (
               <Card
@@ -74,15 +74,15 @@ export default async function Home() {
         </div>
       </div>
 
-      <div className="mt-11 space-y-12">
+      <div className="mt-11 flex flex-col items-center space-y-12">
         <Typography
           variant="span"
-          className="text-2xl px-9 font-medium text-white flex items-center gap-x-7"
+          className="flex w-[1440px] items-center gap-x-7 px-9 text-2xl font-medium text-white"
         >
-          <EngineerIcon className="w-10 h-10" strokeWidth={2} />
+          <EngineerIcon className="h-10 w-10" strokeWidth={2} />
           Tecnologias
         </Typography>
-        <Marquee>
+        <Marquee speed={70}>
           {tecnologies.body.map((tecnology) => (
             <Image
               key={tecnology._id}
