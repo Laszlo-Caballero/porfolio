@@ -7,6 +7,7 @@ import { Typography } from '@/components/ui/Typography/Typography';
 import { GetAllTecnologies } from '@/Services/GetallTecnologies';
 import { GetExperience } from '@/Services/GetExperience';
 import { GetProyects } from '@/Services/GetProyects';
+import { cn } from '@/utils/cn';
 import { getTranslations } from 'next-intl/server';
 import Image from 'next/image';
 import Marquee from 'react-fast-marquee';
@@ -62,9 +63,9 @@ export default async function Home() {
           <IoCode />
           {t('projects')}
         </Typography>
-        <div className="mt-12 grid w-full grid-cols-3 gap-x-4">
-          {proyects.body.map((proyect) => {
-            return <Card key={proyect._id} {...proyect} />;
+        <div className="mt-12 grid grid-cols-4 gap-4">
+          {proyects.body.map((proyect, i) => {
+            return <Card key={proyect._id} {...proyect} className={cn(i > 2 && 'col-span-2')} />;
           })}
         </div>
       </div>

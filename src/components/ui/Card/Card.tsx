@@ -2,6 +2,11 @@ import { ProyectResponsive, Tecnology } from '@/Interfaces/types';
 import Image from 'next/image';
 import { Typography } from '../Typography/Typography';
 import Link from 'next/link';
+import { cn } from '@/utils/cn';
+
+interface CardProps extends ProyectResponsive {
+  className?: string;
+}
 
 export default function Card({
   tecnologies,
@@ -9,10 +14,16 @@ export default function Card({
   slug,
   urlImage,
   description,
-}: ProyectResponsive) {
+  outStanding,
+  className,
+}: CardProps) {
   return (
     <Link
-      className="bg-primary-black-2 flex h-full w-full flex-col rounded-2xl pb-4"
+      className={cn(
+        'bg-primary-black-2 flex h-full w-full flex-col rounded-2xl pb-4 last:col-span-2',
+        outStanding && 'col-span-3 row-span-2 row-start-1',
+        className,
+      )}
       href={slug}
       target="_blank"
     >

@@ -1,6 +1,6 @@
-import { ProyectResponsive, Responsive } from "@/Interfaces/types";
-import connectMongoDB from "@/lib/mongo";
-import Project from "@/schemas/projects/project.schema";
+import { ProyectResponsive, Responsive } from '@/Interfaces/types';
+import connectMongoDB from '@/lib/mongo';
+import Project from '@/schemas/projects/project.schema';
 
 export async function GetProyects(): Promise<Responsive<ProyectResponsive[]>> {
   await connectMongoDB();
@@ -13,11 +13,19 @@ export async function GetProyects(): Promise<Responsive<ProyectResponsive[]>> {
     };
   }) as ProyectResponsive[];
 
-  console.log("Proyects", parseData);
+  const outStanding = parseData.filter((item) => item.outStanding);
+
+  if (outStanding.length > 0) {
+    parseData.sort((a, b) => {
+      if (a.outStanding && !b.outStanding) return -1;
+      if (!a.outStanding && b.outStanding) return 1;
+      return 0;
+    });
+  }
 
   return {
     body: parseData,
-    message: "All experiences",
+    message: 'All experiences',
     status: 200,
   };
 }
