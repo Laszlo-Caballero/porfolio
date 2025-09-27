@@ -1,5 +1,5 @@
-import { ClassConstructor, plainToInstance } from "class-transformer";
-import { validate } from "class-validator";
+import { ClassConstructor, plainToInstance } from 'class-transformer';
+import { validate } from 'class-validator';
 
 export async function Validate<T, K>(dto: ClassConstructor<T>, obj: K) {
   const instance = plainToInstance(dto, obj);

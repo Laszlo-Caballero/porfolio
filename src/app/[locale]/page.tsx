@@ -1,6 +1,4 @@
-import { CodeIcon } from '@/assets/CodeIcon';
 import EngineerIcon from '@/assets/EngineerIcon';
-import { WorkIcon } from '@/assets/WorkIcon';
 import Hero from '@/components/layout/Hero/Hero';
 import FormContact from '@/components/shared/formContact';
 import Card from '@/components/ui/Card/Card';
@@ -9,9 +7,11 @@ import { Typography } from '@/components/ui/Typography/Typography';
 import { GetAllTecnologies } from '@/Services/GetallTecnologies';
 import { GetExperience } from '@/Services/GetExperience';
 import { GetProyects } from '@/Services/GetProyects';
+import { getTranslations } from 'next-intl/server';
 import Image from 'next/image';
 import Marquee from 'react-fast-marquee';
-
+import { CgWorkAlt } from 'react-icons/cg';
+import { IoCode } from 'react-icons/io5';
 export default async function Home() {
   const [data, proyects, tecnologies] = await Promise.all([
     GetExperience(),
@@ -24,18 +24,20 @@ export default async function Home() {
   const fistMiddle = tecnologies.body.slice(0, Math.floor(length / 2));
   const secondMiddle = tecnologies.body.slice(Math.floor(length / 2), length);
 
+  const t = await getTranslations('home');
+
   return (
     <main className="flex h-full w-full flex-1 flex-col items-center">
       <Hero />
-      <div className="flex w-full max-w-[1440px] flex-col px-9 py-12">
+      <div className="mt-11 flex w-full max-w-[1440px] flex-col px-9 py-12">
         <Typography
           variant="span"
-          className="flex w-full items-center gap-x-7 text-2xl font-medium"
+          className="flex w-full items-center gap-x-2 text-2xl font-semibold"
         >
-          <WorkIcon className="h-10 w-10 text-white" strokeWidth={2} />
-          Experiencia
+          <CgWorkAlt />
+          {t('experience')}
         </Typography>
-        <div className="mt-12">
+        <div className="mx-3 mt-4 flex flex-col gap-y-6 border-l">
           {data.body.map((experience) => (
             <TimeLine
               key={experience._id}
@@ -43,13 +45,11 @@ export default async function Home() {
               description={experience.description}
               name={experience.company}
               date={experience.time}
-              image={experience.urlImage}
             />
           ))}
           <TimeLine
             title="Con disposición para asumir nuevos retos que me ayuden a seguir evolucionando."
             disabled
-            image=""
           />
         </div>
       </div>
@@ -57,23 +57,14 @@ export default async function Home() {
       <div className="flex w-full max-w-[1440px] flex-col px-9 py-12">
         <Typography
           variant="span"
-          className="flex items-center gap-x-7 text-2xl font-medium text-white"
+          className="flex w-full items-center gap-x-2 text-2xl font-semibold"
         >
-          <CodeIcon className="h-10 w-10" strokeWidth={2} />
-          Proyectos
+          <IoCode />
+          {t('projects')}
         </Typography>
         <div className="mt-12 grid w-full grid-cols-3 gap-x-4">
           {proyects.body.map((proyect) => {
-            return (
-              <Card
-                key={proyect._id}
-                description={proyect.description}
-                tecnologies={proyect.tecnologies}
-                githubUrl={proyect.githubUrl}
-                image={proyect.urlImage}
-                title={proyect.title}
-              />
-            );
+            return <Card key={proyect._id} {...proyect} />;
           })}
         </div>
       </div>
@@ -84,7 +75,7 @@ export default async function Home() {
           className="flex w-[1440px] items-center gap-x-7 px-9 text-2xl font-medium text-white"
         >
           <EngineerIcon className="h-10 w-10" strokeWidth={2} />
-          Tecnologias
+          {t('technologies')}
         </Typography>
         <Marquee className="mt-12" speed={70} autoFill>
           {fistMiddle.map((tecnology) => (

@@ -1,8 +1,13 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 @theme {
   --color-primary-black: #020617;
   --color-primary-yellow: #f0d225;
   --color-primary-black-2: #0f172a;
-  --font-montserrat: "Montserrat", sans-serif;
+  --color-primary-black-3: #0e1724;
+  --color-primary-gray: #b8c6d9;
+  --color-primary-black-4: #0e1724;
+  --color-primary-black-5: #0b1220;
+  --color-primary-gray-2: #1f2937;
+  --font-montserrat: 'Montserrat', sans-serif;
 }

@@ -1,4 +1,4 @@
-import { FC, SVGProps } from "react";
+import { FC, SVGProps } from 'react';
 export const TelegramIcon: FC<SVGProps<SVGSVGElement>> = ({ ...props }) => (
   <svg
     width={22}
@@ -11,7 +11,7 @@ export const TelegramIcon: FC<SVGProps<SVGSVGElement>> = ({ ...props }) => (
     <g clipPath="url(#clip0_2_110)">
       <path
         d="M10.9904 0.798096C8.15271 0.798096 5.42873 1.92631 3.4238 3.93259C1.41679 5.93966 0.289023 8.66164 0.288467 11.5C0.288467 14.3372 1.41719 17.0612 3.4238 19.0674C5.42873 21.0737 8.15271 22.2019 10.9904 22.2019C13.8281 22.2019 16.552 21.0737 18.557 19.0674C20.5636 17.0612 21.6923 14.3372 21.6923 11.5C21.6923 8.66284 20.5636 5.93887 18.557 3.93259C16.552 1.92631 13.8281 0.798096 10.9904 0.798096Z"
-        fill="white"
+        fill="currentColor"
       />
 
       <path
@@ -25,7 +25,7 @@ export const TelegramIcon: FC<SVGProps<SVGSVGElement>> = ({ ...props }) => (
         <rect
           width="21.4038"
           height="21.4038"
-          fill="white"
+          fill="currentColor"
           transform="translate(0.288467 0.798096)"
         />
       </clipPath>

@@ -1,7 +1,5 @@
-import React from "react";
-import { Typography } from "../Typography/Typography";
-import { WorkSmallIcon } from "@/assets/WorkSmallIcon";
-import Image from "next/image";
+import React from 'react';
+import { Typography } from '../Typography/Typography';
 
 interface TimeLineProps {
   title?: string;
@@ -9,52 +7,30 @@ interface TimeLineProps {
   name?: string;
   date?: string;
   disabled?: boolean;
-  image: string;
 }
 
-export default function TimeLine({
-  title,
-  name,
-  date,
-  description,
-  disabled,
-  image,
-}: TimeLineProps) {
+export default function TimeLine({ title, name, date, description, disabled }: TimeLineProps) {
   return (
-    <div className=" w-full flex flex-col max-w-[800px]">
-      <div className="flex items-center gap-x-7">
-        <div className="  bg-primary-black w-11 flex items-center">
-          <span className="p-3 rounded-full border-white border-2">
-            <WorkSmallIcon className="w-4 h-4 text-white" />
-          </span>
-        </div>
+    <div className="border-primary-gray-2 bg-primary-black-5 relative ml-8 flex w-full flex-col rounded-xl border p-[17px]">
+      <span className="bg-primary-yellow absolute top-0 left-0 block size-4 -translate-x-2 translate-y-6 rounded-full"></span>
 
-        <Typography variant="p" className="text-primary-yellow text-lg">
-          {title}
-        </Typography>
-      </div>
-      <div className="border-l border-white ml-[22px] pl-12 flex flex-col">
-        <Typography variant="p" className="font-medium text-lg ">
+      <Typography variant="p" className="text-xl font-semibold text-white">
+        {title}
+      </Typography>
+      {!disabled && (
+        <div className="flex items-center justify-between pb-2 font-medium">
+          <Typography variant="span" className="text-primary-gray flex items-center gap-x-2">
+            {name}
+          </Typography>
+          <Typography variant="p" className="text-primary-gray">
+            {date}
+          </Typography>
+        </div>
+      )}
+      <div className="flex flex-col">
+        <Typography variant="p" className="text-primary-gray font-medium">
           {description}
         </Typography>
-        {!disabled && (
-          <div className="flex items-center justify-between pb-2">
-            <Typography
-              variant="span"
-              className="mt-3.5 flex items-center gap-x-2"
-            >
-              <Image
-                src={image}
-                alt="photo empresa"
-                className="w-[34px] h-[34px]"
-                width={34}
-                height={34}
-              />
-              {name}
-            </Typography>
-            <Typography variant="p">{date}</Typography>
-          </div>
-        )}
       </div>
     </div>
   );

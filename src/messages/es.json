@@ -1,1 +1,18 @@
-{}
+{
+  "header": {
+    "home": "Inicio",
+    "experience": "Experiencia",
+    "projects": "Proyectos",
+    "contact": "Contacto"
+  },
+  "hero": {
+    "profession": "Desarrollador Full Stack",
+    "description": "Soy un Desarrollador Full Stack con experiencia en la construcción de aplicaciones web utilizando tecnologías modernas. Me apasiona aprender nuevas tecnologías y mejorar mis habilidades."
+  },
+  "home": {
+    "experience": "Experiencia",
+    "projects": "Proyectos",
+    "technologies": "Tecnologías",
+    "contact": "Contacto"
+  }
+}

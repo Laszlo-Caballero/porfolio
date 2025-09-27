@@ -1,58 +1,42 @@
-import { Tecnology } from "@/Interfaces/types";
-import Image from "next/image";
-import { Typography } from "../Typography/Typography";
-import Link from "next/link";
-
-interface CardProps {
-  title?: string;
-  description?: string;
-  tecnologies?: Tecnology[];
-  githubUrl: string;
-  image: string;
-}
+import { ProyectResponsive, Tecnology } from '@/Interfaces/types';
+import Image from 'next/image';
+import { Typography } from '../Typography/Typography';
+import Link from 'next/link';
 
 export default function Card({
-  image,
-  title,
-  description,
-  githubUrl,
   tecnologies,
-}: CardProps) {
+  title,
+  slug,
+  urlImage,
+  description,
+}: ProyectResponsive) {
   return (
     <Link
-      className="w-full h-full flex flex-col rounded-2xl bg-primary-black-2 pb-4"
-      href={githubUrl}
+      className="bg-primary-black-2 flex h-full w-full flex-col rounded-2xl pb-4"
+      href={slug}
       target="_blank"
     >
       <Image
-        src={image}
+        src={urlImage.url}
         alt="photo proyect"
-        className="w-full h-[125px] object-cover object-top rounded-t-2xl"
+        className="h-[125px] w-full rounded-t-2xl object-cover object-top"
         width={500}
         height={500}
       />
-      <div className="flex flex-col w-full px-[18px] ">
-        <Typography variant="p" className="text-white font-medium text-lg mt-2">
+      <div className="flex w-full flex-col px-[18px]">
+        <Typography variant="p" className="mt-2 text-lg font-medium text-white">
           {title}
         </Typography>
-        <Typography variant="p" className="text-white font-medium text-sm mt-2">
+        <Typography variant="p" className="mt-2 text-sm font-medium text-white">
           {description}
         </Typography>
-        <div className="flex flex-wrap gap-x-2 mt-4 gap-y-4 h-full ">
-          {tecnologies?.map((tecnology) => (
+        <div className="mt-4 flex h-full flex-wrap gap-x-2 gap-y-4">
+          {tecnologies?.map((tecnology, i) => (
             <span
-              className="bg-sky-950 px-4 justify-center gap-x-2  rounded-full py-2 flex items-center"
-              key={tecnology._id}
+              className="flex items-center justify-center gap-x-2 rounded-full bg-sky-950 px-4 py-2"
+              key={i}
             >
-              <Image
-                key={tecnology._id}
-                src={tecnology.urlImage}
-                alt={tecnology.name}
-                className="w-[30px] h-[30px]"
-                width={30}
-                height={30}
-              />
-              {tecnology.name}
+              {tecnology}
             </span>
           ))}
         </div>

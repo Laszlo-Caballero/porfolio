@@ -1,1 +1,18 @@
-{}
+{
+  "header": {
+    "home": "Home",
+    "experience": "Experience",
+    "projects": "Projects",
+    "contact": "Contact"
+  },
+  "hero": {
+    "profession": "Full Stack Developer",
+    "description": "I am a Full Stack Developer with experience in building web applications using modern technologies. I am passionate about learning new technologies and improving my skills."
+  },
+  "home": {
+    "experience": "Experience",
+    "projects": "Projects",
+    "technologies": "Technologies",
+    "contact": "Contact"
+  }
+}
