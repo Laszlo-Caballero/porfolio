@@ -1,6 +1,4 @@
 import { defineRouting } from 'next-intl/routing';
-import { keyof } from 'zod';
-
 export const routing = defineRouting({
   locales: ['en', 'es'],
   pathnames: {

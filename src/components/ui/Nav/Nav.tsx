@@ -1,7 +1,6 @@
 'use client';
 import { CONST_PAGE } from '@/const/const';
 import { usePathname, useRouter } from '@/i18n/request';
-import { RoutingPathNames } from '@/i18n/routing';
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import React from 'react';

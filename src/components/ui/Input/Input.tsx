@@ -16,7 +16,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(({ containerClassName, ..
         id={id}
         {...props}
         className={cx(
-          'w-full rounded-full border-2 border-white py-3 pl-9 text-xl placeholder:font-semibold',
+          'border-primary-gray-2 w-full rounded-full border-2 px-[15px] py-3 text-sm placeholder:font-semibold placeholder:text-white',
           props.className,
         )}
       />

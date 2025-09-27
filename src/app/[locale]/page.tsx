@@ -1,4 +1,3 @@
-import EngineerIcon from '@/assets/EngineerIcon';
 import Hero from '@/components/layout/Hero/Hero';
 import FormContact from '@/components/shared/formContact';
 import Card from '@/components/ui/Card/Card';
