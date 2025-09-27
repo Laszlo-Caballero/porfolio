@@ -1,6 +1,7 @@
 'use client';
 import { CONST_PAGE } from '@/const/const';
 import { usePathname, useRouter } from '@/i18n/request';
+import { RoutingPathNames } from '@/i18n/routing';
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import React from 'react';
@@ -34,7 +35,7 @@ export default function Nav() {
           <button
             className="bg-primary-black-3 text-primary-gray rounded-4xl px-3 py-2.5 font-semibold"
             onClick={() => {
-              router.push(pathname.replace('/en', ''), { locale: 'es' });
+              router.push(pathname.replace('/en', '') as any, { locale: 'es' });
             }}
           >
             ES
@@ -42,7 +43,7 @@ export default function Nav() {
           <button
             className="bg-primary-black-3 text-primary-gray rounded-4xl px-3 py-2.5 font-semibold"
             onClick={() => {
-              router.push(pathname, { locale: 'en' });
+              router.push(pathname as any, { locale: 'en' });
             }}
           >
             EN

@@ -20,8 +20,8 @@ export default function Card({
   return (
     <Link
       className={cn(
-        'bg-primary-black-2 flex h-full w-full flex-col rounded-2xl pb-4 last:col-span-2',
-        outStanding && 'col-span-3 row-span-2 row-start-1',
+        'bg-primary-black-5 border-primary-gray-2 col-span-2 flex h-full w-full flex-col rounded-2xl border pb-4',
+        outStanding && 'col-span-4 row-span-2 row-start-1',
         className,
       )}
       href={slug}
@@ -30,21 +30,29 @@ export default function Card({
       <Image
         src={urlImage.url}
         alt="photo proyect"
-        className="h-[125px] w-full rounded-t-2xl object-cover object-top"
+        className={cn(
+          'max-h-[200px] w-full rounded-t-2xl object-cover',
+          outStanding && 'max-h-[500px]',
+        )}
         width={500}
         height={500}
       />
-      <div className="flex w-full flex-col px-[18px]">
-        <Typography variant="p" className="mt-2 text-lg font-medium text-white">
+      <div
+        className={cn('mt-2 flex w-full flex-col gap-1 px-[18px]', outStanding && 'mt-4 gap-y-2')}
+      >
+        <Typography
+          variant="p"
+          className={cn('font-semibold text-white', outStanding && 'text-2xl')}
+        >
           {title}
         </Typography>
-        <Typography variant="p" className="mt-2 text-sm font-medium text-white">
+        <Typography variant="p" className="text-sm font-medium text-white">
           {description}
         </Typography>
-        <div className="mt-4 flex h-full flex-wrap gap-x-2 gap-y-4">
+        <div className="flex h-full flex-wrap gap-x-2 gap-y-4">
           {tecnologies?.map((tecnology, i) => (
             <span
-              className="flex items-center justify-center gap-x-2 rounded-full bg-sky-950 px-4 py-2"
+              className="bg-primary-black-3 flex min-w-[59px] items-center justify-center gap-x-2 rounded-full px-2.5 py-1 font-semibold"
               key={i}
             >
               {tecnology}

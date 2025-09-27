@@ -6,31 +6,27 @@ import TimeLine from '@/components/ui/TimeLine/TimeLine';
 import { Typography } from '@/components/ui/Typography/Typography';
 import { GetAllTecnologies } from '@/Services/GetallTecnologies';
 import { GetExperience } from '@/Services/GetExperience';
-import { GetProyects } from '@/Services/GetProyects';
+import { GetProyectsLimit } from '@/Services/GetProyects';
 import { cn } from '@/utils/cn';
 import { getTranslations } from 'next-intl/server';
-import Image from 'next/image';
-import Marquee from 'react-fast-marquee';
 import { CgWorkAlt } from 'react-icons/cg';
 import { IoCode } from 'react-icons/io5';
+import { HiCpuChip } from 'react-icons/hi2';
+import { Tecnologie, TecnologieContainer } from '@/components/ui/Tenologie/Tecnologie';
+
 export default async function Home() {
   const [data, proyects, tecnologies] = await Promise.all([
     GetExperience(),
-    GetProyects(),
+    GetProyectsLimit(5),
     GetAllTecnologies(),
   ]);
-
-  const length = tecnologies.body.length;
-
-  const fistMiddle = tecnologies.body.slice(0, Math.floor(length / 2));
-  const secondMiddle = tecnologies.body.slice(Math.floor(length / 2), length);
 
   const t = await getTranslations('home');
 
   return (
     <main className="flex h-full w-full flex-1 flex-col items-center">
       <Hero />
-      <div className="mt-11 flex w-full max-w-[1440px] flex-col px-9 py-12">
+      <div className="mt-11 flex w-full flex-col px-9 py-12">
         <Typography
           variant="span"
           className="flex w-full items-center gap-x-2 text-2xl font-semibold"
@@ -55,7 +51,7 @@ export default async function Home() {
         </div>
       </div>
 
-      <div className="flex w-full max-w-[1440px] flex-col px-9 py-12">
+      <div className="flex w-full flex-col px-9 py-12">
         <Typography
           variant="span"
           className="flex w-full items-center gap-x-2 text-2xl font-semibold"
@@ -63,45 +59,32 @@ export default async function Home() {
           <IoCode />
           {t('projects')}
         </Typography>
-        <div className="mt-12 grid grid-cols-4 gap-4">
+        <div className="mt-12 grid grid-cols-6 gap-4">
           {proyects.body.map((proyect, i) => {
-            return <Card key={proyect._id} {...proyect} className={cn(i > 2 && 'col-span-2')} />;
+            return <Card key={proyect._id} {...proyect} className={cn(i > 2 && 'col-span-3')} />;
           })}
         </div>
       </div>
 
-      <div className="flex flex-col items-center space-y-12 py-12">
+      <div className="flex w-full flex-col px-9 py-12">
         <Typography
           variant="span"
-          className="flex w-[1440px] items-center gap-x-7 px-9 text-2xl font-medium text-white"
+          className="flex w-full items-center gap-x-2 text-2xl font-semibold"
         >
-          <EngineerIcon className="h-10 w-10" strokeWidth={2} />
+          <HiCpuChip />
           {t('technologies')}
         </Typography>
-        <Marquee className="mt-12" speed={70} autoFill>
-          {fistMiddle.map((tecnology) => (
-            <Image
+
+        <TecnologieContainer>
+          {tecnologies.body.map((tecnology) => (
+            <Tecnologie
               key={tecnology._id}
-              src={tecnology.urlImage}
-              alt={tecnology.altImage}
-              width={98}
-              height={98}
-              className="ml-5 max-h-[98px] w-auto"
+              urlImage={tecnology.urlImage}
+              altImage={tecnology.altImage}
+              name={tecnology.altImage}
             />
           ))}
-        </Marquee>
-        <Marquee className="mt-4" speed={70} autoFill direction="right">
-          {secondMiddle.map((tecnology) => (
-            <Image
-              key={tecnology._id}
-              src={tecnology.urlImage}
-              alt={tecnology.altImage}
-              width={98}
-              height={98}
-              className="ml-5 max-h-[98px] w-auto"
-            />
-          ))}
-        </Marquee>
+        </TecnologieContainer>
       </div>
       <FormContact />
     </main>

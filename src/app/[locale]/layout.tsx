@@ -30,7 +30,7 @@ export default async function RootLayout({
           className={`bg-primary-black flex min-h-screen w-full flex-col items-center justify-center text-white antialiased`}
         >
           <Nav />
-          {children}
+          <main className="flex max-w-[1440px] flex-col">{children}</main>
           <Toaster position="top-left" />
         </body>
       </NextIntlClientProvider>

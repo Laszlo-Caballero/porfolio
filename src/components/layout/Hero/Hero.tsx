@@ -13,7 +13,7 @@ export default async function Hero() {
   const t = await getTranslations('hero');
 
   return (
-    <div className="flex w-full max-w-[1440px] gap-x-5 px-9 pt-8">
+    <div className="flex w-full gap-x-5 px-9 pt-8">
       <Image
         src="/photo.png"
         alt="Picture of the author"
