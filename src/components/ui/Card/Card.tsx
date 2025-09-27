@@ -1,4 +1,4 @@
-import { ProyectResponsive, Tecnology } from '@/Interfaces/types';
+import { ProyectResponsive } from '@/Interfaces/types';
 import Image from 'next/image';
 import { Typography } from '../Typography/Typography';
 import Link from 'next/link';
