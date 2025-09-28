@@ -1,6 +1,7 @@
 import { ProyectResponsive, Responsive } from '@/Interfaces/types';
 import connectMongoDB from '@/lib/mongo';
 import Project from '@/schemas/projects/project.schema';
+import { cache } from 'react';
 
 export async function GetProyects(): Promise<Responsive<ProyectResponsive[]>> {
   await connectMongoDB();
@@ -85,3 +86,7 @@ export async function GetProyectBySlug(
     status: 200,
   };
 }
+
+export const GetProyectCache = cache(async (slug: string) => {
+  return await GetProyectBySlug(slug);
+});

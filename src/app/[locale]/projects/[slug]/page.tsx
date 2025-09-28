@@ -2,7 +2,7 @@ import { GithubIcon } from '@/assets/GithubIcon';
 import ButtonLink from '@/components/ui/ButtonLink/ButtonLink';
 import { Typography } from '@/components/ui/Typography/Typography';
 import { redirect } from '@/i18n/request';
-import { GetProyectBySlug } from '@/Services/GetProyects';
+import { GetProyectCache } from '@/Services/GetProyects';
 import { getTranslations } from 'next-intl/server';
 import Image from 'next/image';
 import React from 'react';
@@ -10,6 +10,24 @@ import { TbAlertCircle } from 'react-icons/tb';
 import { FaRegNewspaper } from 'react-icons/fa6';
 import { FiTarget } from 'react-icons/fi';
 import { FiCheckCircle } from 'react-icons/fi';
+import { Metadata } from 'next';
+
+export async function generateMetadata({
+  params,
+}: {
+  params: { slug: string; locale: string };
+}): Promise<Metadata> {
+  const { slug } = params;
+
+  const project = await GetProyectCache(slug);
+
+  return {
+    title: project.body ? `${project.body.title} | Projects` : 'Project Not Found',
+    description: project.body
+      ? project.body.description
+      : 'The project you are looking for does not exist or has been removed.',
+  };
+}
 
 export default async function Details({
   params,
@@ -18,7 +36,7 @@ export default async function Details({
 }) {
   const { slug, locale } = await params;
 
-  const data = await GetProyectBySlug(slug);
+  const data = await GetProyectCache(slug);
   const t = await getTranslations('projects');
 
   if (data.status === 404) {
