@@ -36,5 +36,19 @@
   "contact": {
     "title": "Trabajemos juntos",
     "description": "¿Tienes un proyecto en mente o simplemente quieres saludar? Me encantaría saber de ti. Completa el formulario a continuación y me pondré en contacto contigo."
+  },
+  "headers": {
+    "home": {
+      "title": "Portafolio | Laszlo Caballero",
+      "description": "Bienvenido a mi sitio web de portafolio. Aquí puedes encontrar información sobre mi experiencia, proyectos y habilidades."
+    },
+    "contact": {
+      "title": "Contacto",
+      "description": "No dudes en comunicarte conmigo para cualquier consulta o oportunidad de colaboración. ¡Espero con interés saber de ti!"
+    },
+    "projects": {
+      "title": "Proyectos",
+      "description": "Explora mis proyectos recientes y descubre cómo puedo ayudarte a llevar tu idea al siguiente nivel con mis habilidades de desarrollo web."
+    }
   }
 }

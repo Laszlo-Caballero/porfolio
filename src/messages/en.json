@@ -36,5 +36,19 @@
   "contact": {
     "title": "Let's Work Together",
     "description": "Do you have a project in mind or just want to say hello? I would love to hear from you. Please fill out the form below and I will get in touch with you."
+  },
+  "headers": {
+    "home": {
+      "title": "Portfolio | Laszlo Caballero",
+      "description": "Welcome to my portfolio website. Here you can find information about my experience, projects, and skills."
+    },
+    "contact": {
+      "title": "Contact",
+      "description": "Feel free to reach out to me for any inquiries or collaboration opportunities. I look forward to hearing from you!"
+    },
+    "projects": {
+      "title": "Projects",
+      "description": "Explore my recent projects and discover how I can help you take your idea to the next level with my web development skills."
+    }
   }
 }

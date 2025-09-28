@@ -7,11 +7,18 @@ import { hasLocale, NextIntlClientProvider } from 'next-intl';
 import { routing } from '@/i18n/routing';
 import { notFound } from 'next/navigation';
 import { LayoutQuery } from '@/components/shared/LayoutQuery';
+import { getTranslations } from 'next-intl/server';
 
-export const metadata: Metadata = {
-  title: 'Laszlo Caballero',
-  description: 'Portfolio of Laszlo Caballero',
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getTranslations('headers.home');
+  return {
+    title: {
+      default: t('title'),
+      template: `%s | ${t('title')}`,
+    },
+    description: t('description'),
+  };
+}
 
 export default async function RootLayout({
   children,
