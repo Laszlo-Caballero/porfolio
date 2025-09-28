@@ -4,6 +4,7 @@ import Project from '@/schemas/projects/project.schema';
 
 export async function GetProyects(): Promise<Responsive<ProyectResponsive[]>> {
   await connectMongoDB();
+
   const data = await Project.find();
 
   const parseData = data.map((item) => {
@@ -54,6 +55,33 @@ export async function GetProyectsLimit(limit: number): Promise<Responsive<Proyec
   return {
     body: parseData,
     message: 'All experiences',
+    status: 200,
+  };
+}
+
+export async function GetProyectBySlug(
+  slug: string,
+): Promise<Responsive<ProyectResponsive | null>> {
+  await connectMongoDB();
+
+  const data = await Project.findOne({ slug: slug });
+
+  if (!data) {
+    return {
+      body: null,
+      message: 'Project not found',
+      status: 404,
+    };
+  }
+
+  const parseData = {
+    ...data.toObject(),
+    _id: data._id.toString(),
+  } as ProyectResponsive;
+
+  return {
+    body: parseData,
+    message: 'Project found',
     status: 200,
   };
 }

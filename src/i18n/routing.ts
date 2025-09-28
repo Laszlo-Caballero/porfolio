@@ -14,6 +14,10 @@ export const routing = defineRouting({
       en: '/projects/[slug]',
       es: '/proyectos/[slug]',
     },
+    '/404': {
+      en: '/404',
+      es: '/404',
+    },
   },
   defaultLocale: 'es',
   localePrefix: 'as-needed',

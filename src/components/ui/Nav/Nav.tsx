@@ -1,6 +1,6 @@
 'use client';
 import { CONST_PAGE } from '@/const/const';
-import { usePathname, useRouter } from '@/i18n/request';
+import { Link, usePathname, useRouter } from '@/i18n/request';
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import React from 'react';
@@ -24,10 +24,12 @@ export default function Nav() {
           <span className="ml-3 text-2xl font-medium">{CONST_PAGE.name_header}</span>
         </div>
         <ul className="flex gap-x-6 py-6 text-xl font-medium">
-          <li>{t('home')}</li>
-          <li>{t('experience')}</li>
-          <li>{t('projects')}</li>
-          <li>{t('contact')}</li>
+          <li className="cursor-pointer">{t('home')}</li>
+          <li className="cursor-pointer">{t('experience')}</li>
+          <li className="cursor-pointer">
+            <Link href="/projects">{t('projects')}</Link>
+          </li>
+          <li className="cursor-pointer">{t('contact')}</li>
         </ul>
 
         <div className="flex gap-x-3">

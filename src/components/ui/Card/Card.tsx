@@ -1,8 +1,8 @@
 import { ProyectResponsive } from '@/Interfaces/types';
 import Image from 'next/image';
 import { Typography } from '../Typography/Typography';
-import Link from 'next/link';
 import { cn } from '@/utils/cn';
+import { Link } from '@/i18n/request';
 
 interface CardProps extends ProyectResponsive {
   className?: string;
@@ -24,8 +24,10 @@ export default function Card({
         outStanding && 'col-span-4 row-span-2 row-start-1',
         className,
       )}
-      href={slug}
-      target="_blank"
+      href={{
+        pathname: '/projects/[slug]',
+        params: { slug },
+      }}
     >
       <Image
         src={urlImage.url}

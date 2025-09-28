@@ -14,5 +14,18 @@
     "projects": "Projects",
     "technologies": "Technologies",
     "contact": "Contact"
+  },
+  "projects": {
+    "title": "Projects",
+    "description": "Here are some of my recent projects. Click on each project to see more details.",
+    "details": "Details",
+    "stack": "Technologies",
+    "role": "Role",
+    "time": "Time",
+    "resume": "Resume",
+    "objective": "Objectives",
+    "learned": "Learned",
+    "interest": "Are you interested in working with me? I can adapt to your needs and help you take your project to the next level.",
+    "contact": "Contact me"
   }
 }

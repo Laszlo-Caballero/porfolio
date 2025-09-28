@@ -1,0 +1,176 @@
+import { GithubIcon } from '@/assets/GithubIcon';
+import ButtonLink from '@/components/ui/ButtonLink/ButtonLink';
+import { Typography } from '@/components/ui/Typography/Typography';
+import { redirect } from '@/i18n/request';
+import { GetProyectBySlug } from '@/Services/GetProyects';
+import { getTranslations } from 'next-intl/server';
+import Image from 'next/image';
+import React from 'react';
+import { TbAlertCircle } from 'react-icons/tb';
+import { FaRegNewspaper } from 'react-icons/fa6';
+import { FiTarget } from 'react-icons/fi';
+import { FiCheckCircle } from 'react-icons/fi';
+
+export default async function Details({
+  params,
+}: {
+  params: Promise<{ slug: string; locale: string }>;
+}) {
+  const { slug, locale } = await params;
+
+  const data = await GetProyectBySlug(slug);
+  const t = await getTranslations('projects');
+
+  if (data.status === 404) {
+    return redirect({
+      href: '/404',
+      locale,
+    });
+  }
+
+  const {
+    title,
+    description,
+    urlImage,
+    githubUrl,
+    images,
+    details,
+    tecnologies,
+    resume,
+    objectives,
+    learnings,
+  } = data.body!;
+
+  return (
+    <main className="mb-12 flex h-full w-full flex-col gap-y-3">
+      <span className="font-medium text-[#7E8A97]">
+        {t('title')} / {title}
+      </span>
+
+      <section className="flex gap-x-4">
+        <Image
+          src={urlImage.url}
+          alt={urlImage.alt}
+          width={120}
+          height={120}
+          className="border-primary-gray-2 size-[120px] rounded-3xl border"
+        />
+
+        <div className="flex flex-col">
+          <Typography variant="h1" className="text-3xl font-semibold">
+            {title}
+          </Typography>
+          <Typography variant="p" className="mt-2 text-lg text-gray-400">
+            {description}
+          </Typography>
+          <ButtonLink href={githubUrl} className="max-w-max">
+            <GithubIcon />
+            Github
+          </ButtonLink>
+        </div>
+      </section>
+      <section className="flex gap-x-4">
+        <article className="mt-2 flex w-[70%] flex-col gap-y-4">
+          <div className="grid grid-cols-2 gap-4">
+            {images.map((image) => (
+              <Image
+                key={image._id}
+                src={image.url}
+                alt={image.alt}
+                width={624}
+                height={280}
+                className="w-full rounded-xl first:col-span-2 last:col-span-2"
+              />
+            ))}
+          </div>
+
+          <div className="bg-primary-black-5 border-primary-gray-2 rounded-2xl border p-4">
+            <span className="flex items-center gap-1 font-semibold">
+              <FaRegNewspaper />
+              <p>{t('resume')}</p>
+            </span>
+
+            <p className="mt-1 font-medium text-gray-400">{resume}</p>
+          </div>
+          <div className="bg-primary-black-5 border-primary-gray-2 rounded-2xl border p-4">
+            <span className="flex items-center gap-1 font-semibold">
+              <FiTarget />
+              <p>{t('objective')}</p>
+            </span>
+
+            <ul>
+              {objectives.map((obj) => (
+                <li key={obj} className="mt-1 flex items-center gap-x-1 font-medium text-gray-400">
+                  <FiCheckCircle />
+                  {obj}
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className="bg-primary-black-5 border-primary-gray-2 rounded-2xl border p-4">
+            <span className="flex items-center gap-1 font-semibold">
+              <FiTarget />
+              <p>{t('learned')}</p>
+            </span>
+
+            <ul>
+              {learnings.map((obj) => (
+                <li key={obj} className="mt-1 flex items-center gap-x-1 font-medium text-gray-400">
+                  <FiCheckCircle />
+                  {obj}
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className="bg-primary-black-5 border-primary-gray-2 flex gap-x-12 rounded-2xl border p-4">
+            <p className="font-medium">{t('interest')}</p>
+
+            <button className="rounded-full bg-[#4F7CFF] px-4 py-2 text-sm font-semibold text-white">
+              {t('contact')}
+            </button>
+          </div>
+        </article>
+        <article className="sticky top-20 flex h-full w-[30%] flex-col gap-y-4">
+          <div className="bg-primary-black-5 border-primary-gray-2 rounded-2xl border p-4">
+            <span className="flex items-center gap-1 font-semibold">
+              <TbAlertCircle />
+              <p>{t('details')}</p>
+            </span>
+
+            <div className="mt-[10px] flex flex-col gap-y-2">
+              <Typography
+                variant="p"
+                className="flex justify-between rounded-xl bg-[#0E1724] p-3 text-sm text-gray-400"
+              >
+                {t('role')} <span className="font-medium text-white">{details.role}</span>
+              </Typography>
+              <Typography
+                variant="p"
+                className="flex justify-between rounded-xl bg-[#0E1724] p-3 text-sm text-gray-400"
+              >
+                {t('time')} <span className="font-medium text-white">{details.time}</span>
+              </Typography>
+            </div>
+          </div>
+          <div className="bg-primary-black-5 border-primary-gray-2 rounded-2xl border p-4">
+            <span className="flex items-center gap-1 font-semibold">
+              <TbAlertCircle />
+              <p>{t('stack')}</p>
+            </span>
+
+            <div className="mt-[10px] flex flex-wrap gap-2">
+              {tecnologies.map((tech) => (
+                <span
+                  key={tech}
+                  className="bg-primary-black-4 rounded-full px-3 py-1 text-sm text-gray-400"
+                >
+                  {tech}
+                </span>
+              ))}
+            </div>
+          </div>
+        </article>
+      </section>
+    </main>
+  );
+}

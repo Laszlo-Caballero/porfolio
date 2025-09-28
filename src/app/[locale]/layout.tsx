@@ -6,6 +6,7 @@ import { Toaster } from 'sonner';
 import { hasLocale, NextIntlClientProvider } from 'next-intl';
 import { routing } from '@/i18n/routing';
 import { notFound } from 'next/navigation';
+import { LayoutQuery } from '@/components/shared/LayoutQuery';
 
 export const metadata: Metadata = {
   title: 'Laszlo Caballero',
@@ -26,13 +27,15 @@ export default async function RootLayout({
   return (
     <html lang={locale}>
       <NextIntlClientProvider>
-        <body
-          className={`bg-primary-black flex min-h-screen w-full flex-col items-center justify-center text-white antialiased`}
-        >
-          <Nav />
-          <main className="flex max-w-[1440px] flex-col">{children}</main>
-          <Toaster position="top-left" />
-        </body>
+        <LayoutQuery>
+          <body
+            className={`bg-primary-black flex min-h-screen w-full flex-col items-center justify-center text-white antialiased`}
+          >
+            <Nav />
+            <main className="flex h-full w-full max-w-[1440px] flex-1 flex-col">{children}</main>
+            <Toaster position="top-left" />
+          </body>
+        </LayoutQuery>
       </NextIntlClientProvider>
     </html>
   );
