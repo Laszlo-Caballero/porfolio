@@ -31,7 +31,9 @@ export default function Nav() {
           <li className="cursor-pointer">
             <Link href="/projects">{t('projects')}</Link>
           </li>
-          <li className="cursor-pointer">{t('contact')}</li>
+          <li className="cursor-pointer">
+            <Link href="/contact">{t('contact')}</Link>
+          </li>
         </ul>
 
         <div className="flex gap-x-3">

@@ -10,7 +10,16 @@ import axios from 'axios';
 import { toast } from 'sonner';
 import { FiPhone } from 'react-icons/fi';
 import Image from 'next/image';
-export default function FormContact() {
+import { cn } from '@/utils/cn';
+
+interface FormContactProps {
+  className?: {
+    container?: string;
+    title?: string;
+  };
+}
+
+export default function FormContact({ className }: FormContactProps) {
   const { register, handleSubmit } = useForm({
     resolver: zodResolver(EmailSchema),
   });
@@ -31,10 +40,10 @@ export default function FormContact() {
   };
 
   return (
-    <div className="mt-12 mb-40 flex w-full flex-col px-9">
+    <div className={cn('mt-12 mb-40 flex w-full flex-col px-9', className?.container)}>
       <Typography
         variant="span"
-        className="flex w-full items-center gap-x-2 text-2xl font-semibold"
+        className={cn('flex w-full items-center gap-x-2 text-2xl font-semibold', className?.title)}
       >
         <FiPhone />
         Contacto
