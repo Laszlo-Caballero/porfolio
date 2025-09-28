@@ -15,9 +15,9 @@ import { Metadata } from 'next';
 export async function generateMetadata({
   params,
 }: {
-  params: { slug: string; locale: string };
+  params: Promise<{ slug: string; locale: string }>;
 }): Promise<Metadata> {
-  const { slug } = params;
+  const { slug } = await params;
 
   const project = await GetProyectCache(slug);
 
