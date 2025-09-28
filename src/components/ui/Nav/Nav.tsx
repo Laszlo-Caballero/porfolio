@@ -24,8 +24,10 @@ export default function Nav() {
           <span className="ml-3 text-2xl font-medium">{CONST_PAGE.name_header}</span>
         </div>
         <ul className="flex gap-x-6 py-6 text-xl font-medium">
-          <li className="cursor-pointer">{t('home')}</li>
-          <li className="cursor-pointer">{t('experience')}</li>
+          <li className="cursor-pointer">
+            <Link href="/">{t('home')}</Link>
+          </li>
+          {/* <li className="cursor-pointer">{t('experience')}</li> */}
           <li className="cursor-pointer">
             <Link href="/projects">{t('projects')}</Link>
           </li>

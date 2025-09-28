@@ -1,6 +1,8 @@
 import EmailTemplate from '@/components/shared/EmailTemplate';
 import { CreateEmailDto } from '@/dtos/email/email.dto';
+import connectMongoDB from '@/lib/mongo';
 import { Validate } from '@/lib/validateDto';
+import { Email } from '@/schemas/email/email.mongoose';
 import { NextRequest, NextResponse } from 'next/server';
 import { Resend } from 'resend';
 
@@ -43,10 +45,20 @@ export async function POST(req: NextRequest) {
     );
   }
 
+  await connectMongoDB();
+  const newEmail = await Email.create({
+    ...body,
+  });
+
+  const savedEmail = await newEmail.save();
+
   return new NextResponse(
     JSON.stringify({
       message: 'Email sent successfully',
-      data: data,
+      data: {
+        emailResponse: data,
+        savedEmail: savedEmail,
+      },
     }),
     { status: 200 },
   );

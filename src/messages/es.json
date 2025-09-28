@@ -27,5 +27,10 @@
     "learned": "Aprendizajes",
     "interest": "¿Te interesa trabajar conmigo? Puedo adaptarme a tus necesidades y ayudarte a llevar tu proyecto al siguiente nivel.",
     "contact": "Contáctame"
+  },
+  "notFound": {
+    "title": "Página no encontrada",
+    "description": "Lo siento, la página que buscas no existe.",
+    "home": "Volver al inicio"
   }
 }
