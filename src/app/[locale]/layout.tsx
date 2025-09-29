@@ -8,6 +8,7 @@ import { routing } from '@/i18n/routing';
 import { notFound } from 'next/navigation';
 import { LayoutQuery } from '@/components/shared/LayoutQuery';
 import { getTranslations } from 'next-intl/server';
+import { Analytics } from '@vercel/analytics/next';
 
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations('headers.home');
@@ -42,6 +43,7 @@ export default async function RootLayout({
             <main className="flex h-full w-full max-w-[1440px] flex-1 flex-col">{children}</main>
             <Toaster position="top-left" />
           </body>
+          <Analytics />
         </LayoutQuery>
       </NextIntlClientProvider>
     </html>
