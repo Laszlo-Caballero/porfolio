@@ -1,10 +1,22 @@
-import "reflect-metadata";
-import { CreateProyectDto } from "@/dtos/projects/create-proyect.dto";
-import connectMongoDB from "@/lib/mongo";
-import { Validate } from "@/lib/validateDto";
-import Project from "@/schemas/projects/project.schema";
-import { NextRequest, NextResponse } from "next/server";
-import { v4 as uuid } from "uuid";
+import 'reflect-metadata';
+import { CreateProyectDto } from '@/dtos/projects/create-proyect.dto';
+import connectMongoDB from '@/lib/mongo';
+import { Validate } from '@/lib/validateDto';
+import Project from '@/schemas/projects/project.schema';
+import { NextRequest, NextResponse } from 'next/server';
+import { v4 as uuid } from 'uuid';
+
+export async function OPTIONS() {
+  return new Response(null, {
+    status: 200,
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
+      'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+      'Access-Control-Allow-Credentials': 'true',
+    },
+  });
+}
 
 export async function GET() {
   await connectMongoDB();
@@ -13,10 +25,10 @@ export async function GET() {
 
   return new NextResponse(
     JSON.stringify({
-      message: "All projects",
+      message: 'All projects',
       body: projects,
       status: 200,
-    })
+    }),
   );
 }
 
@@ -28,11 +40,11 @@ export async function POST(req: NextRequest) {
   if (errors.length > 0) {
     return new NextResponse(
       JSON.stringify({
-        message: "Validation failed",
+        message: 'Validation failed',
         errors: errors,
         status: 400,
       }),
-      { status: 400 }
+      { status: 400 },
     );
   }
 
@@ -47,10 +59,10 @@ export async function POST(req: NextRequest) {
 
   return new NextResponse(
     JSON.stringify({
-      message: "Proyect created",
+      message: 'Proyect created',
       body: savedProject,
       status: 201,
     }),
-    { status: 201 }
+    { status: 201 },
   );
 }

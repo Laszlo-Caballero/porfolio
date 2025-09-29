@@ -1,13 +1,22 @@
-import connectMongoDB from "@/lib/mongo";
-import File from "@/schemas/files/file.schema";
-import cloudinary from "@/utils/cloudinary";
-import { DeleteApiResponse } from "cloudinary";
-import { NextResponse } from "next/server";
+import connectMongoDB from '@/lib/mongo';
+import File from '@/schemas/files/file.schema';
+import cloudinary from '@/utils/cloudinary';
+import { DeleteApiResponse } from 'cloudinary';
+import { NextResponse } from 'next/server';
 
-export async function DELETE(
-  req: Request,
-  { params }: { params: Promise<{ id: string }> }
-) {
+export async function OPTIONS() {
+  return new Response(null, {
+    status: 200,
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
+      'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+      'Access-Control-Allow-Credentials': 'true',
+    },
+  });
+}
+
+export async function DELETE(req: Request, { params }: { params: Promise<{ id: string }> }) {
   try {
     const { id } = await params;
 
@@ -18,7 +27,7 @@ export async function DELETE(
     });
 
     if (!file) {
-      return NextResponse.json("File not found", { status: 404 });
+      return NextResponse.json('File not found', { status: 404 });
     }
 
     await File.deleteOne({
@@ -35,11 +44,11 @@ export async function DELETE(
     });
 
     return NextResponse.json({
-      message: "File deleted successfully",
+      message: 'File deleted successfully',
       body: res,
       status: 200,
     });
   } catch {
-    return NextResponse.json("Internal Server Error", { status: 500 });
+    return NextResponse.json('Internal Server Error', { status: 500 });
   }
 }

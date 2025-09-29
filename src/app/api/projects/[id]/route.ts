@@ -1,11 +1,19 @@
-import connectMongoDB from "@/lib/mongo";
-import Project from "@/schemas/projects/project.schema";
-import { NextResponse } from "next/server";
+import connectMongoDB from '@/lib/mongo';
+import Project from '@/schemas/projects/project.schema';
+import { NextResponse } from 'next/server';
+export async function OPTIONS() {
+  return new Response(null, {
+    status: 200,
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
+      'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+      'Access-Control-Allow-Credentials': 'true',
+    },
+  });
+}
 
-export async function GET(
-  req: Request,
-  { params }: { params: Promise<{ id: string }> }
-) {
+export async function GET(req: Request, { params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
 
   await connectMongoDB();
@@ -15,29 +23,26 @@ export async function GET(
   }).exec();
 
   if (!project) {
-    return new NextResponse(JSON.stringify({ message: "Project not found" }), {
+    return new NextResponse(JSON.stringify({ message: 'Project not found' }), {
       status: 404,
     });
   }
   return new NextResponse(
     JSON.stringify({
-      message: "Project found",
+      message: 'Project found',
       body: project,
       status: 200,
-    })
+    }),
   );
 }
 
-export async function PATCH(
-  req: Request,
-  { params }: { params: Promise<{ id: string }> }
-) {
+export async function PATCH(req: Request, { params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
   const updateProyectDto = await req.json();
 
   await connectMongoDB();
 
-  console.log("Updating project with ID:", id);
+  console.log('Updating project with ID:', id);
 
   const project = await Project.findOne({
     projectId: id,
@@ -45,10 +50,10 @@ export async function PATCH(
 
   if (!project) {
     return NextResponse.json(
-      { message: "Project not found" },
+      { message: 'Project not found' },
       {
         status: 404,
-      }
+      },
     );
   }
 
@@ -56,20 +61,17 @@ export async function PATCH(
     {
       proyectId: id,
     },
-    updateProyectDto
+    updateProyectDto,
   );
 
   return NextResponse.json({
-    message: "Project updated",
+    message: 'Project updated',
     body: proyect,
     status: 200,
   });
 }
 
-export async function DELETE(
-  req: Request,
-  { params }: { params: Promise<{ id: string }> }
-) {
+export async function DELETE(req: Request, { params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
 
   await connectMongoDB();
@@ -79,7 +81,7 @@ export async function DELETE(
   });
 
   if (!project) {
-    return new NextResponse(JSON.stringify({ message: "Project not found" }), {
+    return new NextResponse(JSON.stringify({ message: 'Project not found' }), {
       status: 404,
     });
   }
@@ -88,9 +90,9 @@ export async function DELETE(
 
   return new NextResponse(
     JSON.stringify({
-      message: "Project deleted",
+      message: 'Project deleted',
       status: 200,
       body: null,
-    })
+    }),
   );
 }

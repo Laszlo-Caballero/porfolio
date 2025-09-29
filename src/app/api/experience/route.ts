@@ -1,18 +1,28 @@
-import "reflect-metadata";
-import { CreateExperienceDto } from "@/dtos/experience/create-experience.dto";
-import connectMongoDB from "@/lib/mongo";
-import { Validate } from "@/lib/validateDto";
-import { Experience } from "@/schemas/experience/experience.schema";
-import { NextRequest, NextResponse } from "next/server";
-import { v4 as uuid } from "uuid";
-
+import 'reflect-metadata';
+import { CreateExperienceDto } from '@/dtos/experience/create-experience.dto';
+import connectMongoDB from '@/lib/mongo';
+import { Validate } from '@/lib/validateDto';
+import { Experience } from '@/schemas/experience/experience.schema';
+import { NextRequest, NextResponse } from 'next/server';
+import { v4 as uuid } from 'uuid';
+export async function OPTIONS() {
+  return new Response(null, {
+    status: 200,
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
+      'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+      'Access-Control-Allow-Credentials': 'true',
+    },
+  });
+}
 export async function GET() {
   await connectMongoDB();
 
   const experience = await Experience.find();
 
   return NextResponse.json({
-    message: "All experiences",
+    message: 'All experiences',
     body: experience,
     status: 200,
   });
@@ -25,11 +35,11 @@ export async function POST(req: NextRequest) {
   if (errors.length > 0) {
     return new NextResponse(
       JSON.stringify({
-        message: "Validation failed",
+        message: 'Validation failed',
         errors: errors,
         status: 400,
       }),
-      { status: 400 }
+      { status: 400 },
     );
   }
 
@@ -44,10 +54,10 @@ export async function POST(req: NextRequest) {
 
   return new NextResponse(
     JSON.stringify({
-      message: "Experience created",
+      message: 'Experience created',
       body: savedExperience,
       status: 201,
     }),
-    { status: 201 }
+    { status: 201 },
   );
 }
