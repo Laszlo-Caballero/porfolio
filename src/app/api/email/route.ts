@@ -27,7 +27,7 @@ export async function GET() {
     {
       message: 'Emails retrieved successfully',
       status: 200,
-      data: emails,
+      body: emails,
     },
     {
       status: 200,
