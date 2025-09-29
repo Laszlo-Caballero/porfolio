@@ -23,12 +23,17 @@ export async function GET() {
 
   const projects = await Project.find();
 
-  return new NextResponse(
-    JSON.stringify({
+  return NextResponse.json(
+    {
       message: 'All projects',
       body: projects,
       status: 200,
-    }),
+    },
+    {
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+      },
+    },
   );
 }
 
@@ -38,13 +43,18 @@ export async function POST(req: NextRequest) {
   const errors = await Validate(CreateProyectDto, body);
 
   if (errors.length > 0) {
-    return new NextResponse(
-      JSON.stringify({
+    return NextResponse.json(
+      {
         message: 'Validation failed',
         errors: errors,
         status: 400,
-      }),
-      { status: 400 },
+      },
+      {
+        status: 400,
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+        },
+      },
     );
   }
 
@@ -57,12 +67,17 @@ export async function POST(req: NextRequest) {
 
   const savedProject = await newProject.save();
 
-  return new NextResponse(
-    JSON.stringify({
+  return NextResponse.json(
+    {
       message: 'Proyect created',
       body: savedProject,
       status: 201,
-    }),
-    { status: 201 },
+    },
+    {
+      status: 201,
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+      },
+    },
   );
 }
