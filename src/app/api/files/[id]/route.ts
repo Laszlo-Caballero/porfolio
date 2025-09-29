@@ -27,7 +27,12 @@ export async function DELETE(req: Request, { params }: { params: Promise<{ id: s
     });
 
     if (!file) {
-      return NextResponse.json('File not found', { status: 404 });
+      return NextResponse.json('File not found', {
+        status: 404,
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+        },
+      });
     }
 
     await File.deleteOne({
@@ -43,12 +48,24 @@ export async function DELETE(req: Request, { params }: { params: Promise<{ id: s
       });
     });
 
-    return NextResponse.json({
-      message: 'File deleted successfully',
-      body: res,
-      status: 200,
-    });
+    return NextResponse.json(
+      {
+        message: 'File deleted successfully',
+        body: res,
+        status: 200,
+      },
+      {
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+        },
+      },
+    );
   } catch {
-    return NextResponse.json('Internal Server Error', { status: 500 });
+    return NextResponse.json('Internal Server Error', {
+      status: 500,
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+      },
+    });
   }
 }

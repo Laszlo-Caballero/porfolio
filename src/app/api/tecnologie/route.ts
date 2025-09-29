@@ -1,8 +1,8 @@
-import { TecnologieDto } from "@/dtos/tecnologie/tecnologie.dto";
-import connectMongoDB from "@/lib/mongo";
-import { Validate } from "@/lib/validateDto";
-import Tecnologie from "@/schemas/tecnologie/tecnologie.schema";
-import { NextRequest, NextResponse } from "next/server";
+import { TecnologieDto } from '@/dtos/tecnologie/tecnologie.dto';
+import connectMongoDB from '@/lib/mongo';
+import { Validate } from '@/lib/validateDto';
+import Tecnologie from '@/schemas/tecnologie/tecnologie.schema';
+import { NextRequest, NextResponse } from 'next/server';
 
 export async function OPTIONS() {
   return new Response(null, {
@@ -16,19 +16,23 @@ export async function OPTIONS() {
   });
 }
 
-
 export async function GET() {
   await connectMongoDB();
 
   const tecnologies = await Tecnologie.find();
 
-  return new NextResponse(
-    JSON.stringify({
-      message: "Tecnologies retrieved successfully",
+  return NextResponse.json(
+    {
+      message: 'Tecnologies retrieved successfully',
       data: tecnologies,
       status: 200,
-    }),
-    { status: 200 }
+    },
+    {
+      status: 200,
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+      },
+    },
   );
 }
 
@@ -38,13 +42,18 @@ export async function POST(req: NextRequest) {
   const errors = await Validate(TecnologieDto, body);
 
   if (errors.length > 0) {
-    return new NextResponse(
-      JSON.stringify({
-        message: "Validation failed",
+    return NextResponse.json(
+      {
+        message: 'Validation failed',
         errors: errors,
         status: 400,
-      }),
-      { status: 400 }
+      },
+      {
+        status: 400,
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+        },
+      },
     );
   }
 
@@ -54,12 +63,17 @@ export async function POST(req: NextRequest) {
 
   const saveTecnologie = await newTecnologie.save();
 
-  return new NextResponse(
-    JSON.stringify({
-      message: "Tecnologie created successfully",
+  return NextResponse.json(
+    {
+      message: 'Tecnologie created successfully',
       data: saveTecnologie,
       status: 201,
-    }),
-    { status: 201 }
+    },
+    {
+      status: 201,
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+      },
+    },
   );
 }

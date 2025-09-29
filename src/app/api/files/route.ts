@@ -52,14 +52,26 @@ export async function POST(nextRequest: NextRequest) {
     });
     const savedImage = await newImage.save();
 
-    return NextResponse.json({
-      message: 'File uploaded successfully',
-      body: savedImage,
-      status: 200,
-    });
+    return NextResponse.json(
+      {
+        message: 'File uploaded successfully',
+        body: savedImage,
+        status: 200,
+      },
+      {
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+        },
+      },
+    );
   } catch (error) {
     console.error('Error uploading image:', error);
-    return NextResponse.json('Failed to upload image', { status: 500 });
+    return NextResponse.json('Failed to upload image', {
+      status: 500,
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+      },
+    });
   }
 }
 
@@ -68,9 +80,16 @@ export async function GET() {
 
   const files = await File.find();
 
-  return NextResponse.json({
-    message: 'All files',
-    body: files,
-    status: 200,
-  });
+  return NextResponse.json(
+    {
+      message: 'All files',
+      body: files,
+      status: 200,
+    },
+    {
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+      },
+    },
+  );
 }

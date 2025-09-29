@@ -21,11 +21,18 @@ export async function GET() {
 
   const experience = await Experience.find();
 
-  return NextResponse.json({
-    message: 'All experiences',
-    body: experience,
-    status: 200,
-  });
+  return NextResponse.json(
+    {
+      message: 'All experiences',
+      body: experience,
+      status: 200,
+    },
+    {
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+      },
+    },
+  );
 }
 
 export async function POST(req: NextRequest) {
@@ -33,13 +40,18 @@ export async function POST(req: NextRequest) {
   const errors = await Validate(CreateExperienceDto, body);
 
   if (errors.length > 0) {
-    return new NextResponse(
-      JSON.stringify({
+    return NextResponse.json(
+      {
         message: 'Validation failed',
         errors: errors,
         status: 400,
-      }),
-      { status: 400 },
+      },
+      {
+        status: 400,
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+        },
+      },
     );
   }
 
@@ -52,12 +64,17 @@ export async function POST(req: NextRequest) {
 
   const savedExperience = await newExperience.save();
 
-  return new NextResponse(
-    JSON.stringify({
+  return NextResponse.json(
+    {
       message: 'Experience created',
       body: savedExperience,
       status: 201,
-    }),
-    { status: 201 },
+    },
+    {
+      status: 201,
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+      },
+    },
   );
 }

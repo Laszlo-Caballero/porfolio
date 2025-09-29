@@ -10,13 +10,18 @@ export async function POST(req: NextRequest) {
   const errors = await Validate(InsertManyTecnologieDto, body);
 
   if (errors.length > 0) {
-    return new NextResponse(
-      JSON.stringify({
+    return NextResponse.json(
+      {
         message: 'Validation failed',
         errors: errors,
         status: 400,
-      }),
-      { status: 400 },
+      },
+      {
+        status: 400,
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+        },
+      },
     );
   }
 
@@ -31,12 +36,17 @@ export async function POST(req: NextRequest) {
     }),
   );
 
-  return new NextResponse(
-    JSON.stringify({
+  return NextResponse.json(
+    {
       message: 'Tecnologies created successfully',
       data: saves,
       status: 201,
-    }),
-    { status: 201 },
+    },
+    {
+      status: 201,
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+      },
+    },
   );
 }

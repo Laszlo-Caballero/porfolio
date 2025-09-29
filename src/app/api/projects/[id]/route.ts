@@ -27,12 +27,17 @@ export async function GET(req: Request, { params }: { params: Promise<{ id: stri
       status: 404,
     });
   }
-  return new NextResponse(
-    JSON.stringify({
+  return NextResponse.json(
+    {
       message: 'Project found',
       body: project,
       status: 200,
-    }),
+    },
+    {
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+      },
+    },
   );
 }
 
@@ -53,6 +58,9 @@ export async function PATCH(req: Request, { params }: { params: Promise<{ id: st
       { message: 'Project not found' },
       {
         status: 404,
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+        },
       },
     );
   }
@@ -64,11 +72,18 @@ export async function PATCH(req: Request, { params }: { params: Promise<{ id: st
     updateProyectDto,
   );
 
-  return NextResponse.json({
-    message: 'Project updated',
-    body: proyect,
-    status: 200,
-  });
+  return NextResponse.json(
+    {
+      message: 'Project updated',
+      body: proyect,
+      status: 200,
+    },
+    {
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+      },
+    },
+  );
 }
 
 export async function DELETE(req: Request, { params }: { params: Promise<{ id: string }> }) {
@@ -88,11 +103,16 @@ export async function DELETE(req: Request, { params }: { params: Promise<{ id: s
 
   await Project.deleteOne({ projectId: id }).exec();
 
-  return new NextResponse(
-    JSON.stringify({
+  return NextResponse.json(
+    {
       message: 'Project deleted',
       status: 200,
       body: null,
-    }),
+    },
+    {
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+      },
+    },
   );
 }

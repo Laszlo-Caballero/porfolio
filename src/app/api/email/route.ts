@@ -48,12 +48,17 @@ export async function POST(req: NextRequest) {
   });
 
   if (error) {
-    return new NextResponse(
-      JSON.stringify({
+    return NextResponse.json(
+      {
         message: 'Email sending failed',
         error: error,
-      }),
-      { status: 500 },
+      },
+      {
+        status: 500,
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+        },
+      },
     );
   }
 
@@ -64,14 +69,19 @@ export async function POST(req: NextRequest) {
 
   const savedEmail = await newEmail.save();
 
-  return new NextResponse(
-    JSON.stringify({
+  return NextResponse.json(
+    {
       message: 'Email sent successfully',
       data: {
         emailResponse: data,
         savedEmail: savedEmail,
       },
-    }),
-    { status: 200 },
+    },
+    {
+      status: 200,
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+      },
+    },
   );
 }

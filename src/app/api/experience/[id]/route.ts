@@ -22,7 +22,15 @@ export async function GET(req: Request, { params }: { params: Promise<{ id: stri
   });
 
   if (!experience) {
-    return NextResponse.json({ message: 'Experience not found', status: 404 }, { status: 404 });
+    return NextResponse.json(
+      { message: 'Experience not found', status: 404 },
+      {
+        status: 404,
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+        },
+      },
+    );
   }
 
   return NextResponse.json(
@@ -31,7 +39,12 @@ export async function GET(req: Request, { params }: { params: Promise<{ id: stri
       body: experience,
       status: 200,
     },
-    { status: 200 },
+    {
+      status: 200,
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+      },
+    },
   );
 }
 
@@ -44,7 +57,15 @@ export async function DELETE(req: Request, { params }: { params: Promise<{ id: s
   });
 
   if (!experience) {
-    return NextResponse.json({ message: 'Experience not found', status: 404 }, { status: 404 });
+    return NextResponse.json(
+      { message: 'Experience not found', status: 404 },
+      {
+        status: 404,
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+        },
+      },
+    );
   }
 
   await Experience.deleteOne({ experienceId: id });
@@ -54,7 +75,12 @@ export async function DELETE(req: Request, { params }: { params: Promise<{ id: s
       message: 'Experience deleted',
       status: 200,
     },
-    { status: 200 },
+    {
+      status: 200,
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+      },
+    },
   );
 }
 
@@ -68,7 +94,15 @@ export async function PATCH(req: Request, { params }: { params: Promise<{ id: st
   });
 
   if (!experience) {
-    return NextResponse.json({ message: 'Experience not found', status: 404 }, { status: 404 });
+    return NextResponse.json(
+      { message: 'Experience not found', status: 404 },
+      {
+        status: 404,
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+        },
+      },
+    );
   }
 
   await Experience.updateOne({ experienceId: id }, updateExperienceDto);
@@ -78,6 +112,11 @@ export async function PATCH(req: Request, { params }: { params: Promise<{ id: st
       message: 'Experience updated',
       status: 200,
     },
-    { status: 200 },
+    {
+      status: 200,
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+      },
+    },
   );
 }
