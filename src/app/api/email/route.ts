@@ -20,6 +20,24 @@ export async function OPTIONS() {
   });
 }
 
+export async function GET() {
+  await connectMongoDB();
+  const emails = await Email.find().sort({ createdAt: -1 });
+  return NextResponse.json(
+    {
+      message: 'Emails retrieved successfully',
+      status: 200,
+      data: emails,
+    },
+    {
+      status: 200,
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+      },
+    },
+  );
+}
+
 export async function POST(req: NextRequest) {
   const body: CreateEmailDto = await req.json();
   const errors = await Validate(CreateEmailDto, body);
