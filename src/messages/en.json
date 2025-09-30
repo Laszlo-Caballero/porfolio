@@ -22,11 +22,14 @@
     "stack": "Technologies",
     "role": "Role",
     "time": "Time",
+    "team": "Team",
+    "status": "Status",
     "resume": "Resume",
     "objective": "Objectives",
     "learned": "Learned",
     "interest": "Are you interested in working with me? I can adapt to your needs and help you take your project to the next level.",
-    "contact": "Contact me"
+    "contact": "Contact me",
+    "arquitecure": "Arquitecture"
   },
   "notFound": {
     "title": "Page Not Found",

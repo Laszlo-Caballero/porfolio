@@ -13,9 +13,9 @@ export default function Card({
   title,
   slug,
   urlImage,
-  description,
   outStanding,
   className,
+  detail,
 }: CardProps) {
   return (
     <Link
@@ -49,7 +49,7 @@ export default function Card({
           {title}
         </Typography>
         <Typography variant="p" className="text-sm font-medium text-white">
-          {description}
+          {detail}
         </Typography>
         <div className="flex h-full flex-wrap gap-x-2 gap-y-4">
           {tecnologies?.map((tecnology, i) => (

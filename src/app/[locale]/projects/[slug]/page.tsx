@@ -1,7 +1,7 @@
 import { GithubIcon } from '@/assets/GithubIcon';
 import ButtonLink from '@/components/ui/ButtonLink/ButtonLink';
 import { Typography } from '@/components/ui/Typography/Typography';
-import { redirect } from '@/i18n/request';
+import { Link, redirect } from '@/i18n/request';
 import { GetProyectCache } from '@/Services/GetProyects';
 import { getTranslations } from 'next-intl/server';
 import Image from 'next/image';
@@ -11,6 +11,7 @@ import { FaRegNewspaper } from 'react-icons/fa6';
 import { FiTarget } from 'react-icons/fi';
 import { FiCheckCircle } from 'react-icons/fi';
 import { Metadata } from 'next';
+import ArquitectureCard from '@/components/ui/Arquitecture/Arquitecture';
 
 export async function generateMetadata({
   params,
@@ -57,6 +58,7 @@ export default async function Details({
     resume,
     objectives,
     learnings,
+    arquitecture,
   } = data.body!;
 
   return (
@@ -81,7 +83,7 @@ export default async function Details({
           <Typography variant="p" className="mt-2 text-lg text-gray-400">
             {description}
           </Typography>
-          <ButtonLink href={githubUrl} className="max-w-max">
+          <ButtonLink href={githubUrl} className="mt-1 max-w-max">
             <GithubIcon />
             Github
           </ButtonLink>
@@ -143,10 +145,14 @@ export default async function Details({
           <div className="bg-primary-black-5 border-primary-gray-2 flex gap-x-12 rounded-2xl border p-4">
             <p className="font-medium">{t('interest')}</p>
 
-            <button className="rounded-full bg-[#4F7CFF] px-4 py-2 text-sm font-semibold text-white">
+            <Link
+              href="/contact"
+              className="flex items-center justify-center rounded-full bg-[#4F7CFF] px-4 py-2 text-sm font-semibold text-white"
+            >
               {t('contact')}
-            </button>
+            </Link>
           </div>
+          <ArquitectureCard data={arquitecture} />
         </article>
         <article className="sticky top-20 flex h-full w-[30%] flex-col gap-y-4">
           <div className="bg-primary-black-5 border-primary-gray-2 rounded-2xl border p-4">
@@ -168,6 +174,20 @@ export default async function Details({
               >
                 {t('time')} <span className="font-medium text-white">{details.time}</span>
               </Typography>
+              <Typography
+                variant="p"
+                className="flex justify-between rounded-xl bg-[#0E1724] p-3 text-sm text-gray-400"
+              >
+                {t('status')} <span className="font-medium text-white">{details.status}</span>
+              </Typography>
+              {details.team && (
+                <Typography
+                  variant="p"
+                  className="flex justify-between rounded-xl bg-[#0E1724] p-3 text-sm text-gray-400"
+                >
+                  {t('team')} <span className="font-medium text-white">{details.team}</span>
+                </Typography>
+              )}
             </div>
           </div>
           <div className="bg-primary-black-5 border-primary-gray-2 rounded-2xl border p-4">

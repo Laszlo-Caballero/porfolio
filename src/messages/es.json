@@ -22,11 +22,14 @@
     "stack": "Tecnologías",
     "role": "Rol",
     "time": "Tiempo",
+    "team": "Equipo",
+    "status": "Estado",
     "resume": "Resumen",
     "objective": "Objetivos",
     "learned": "Aprendizajes",
     "interest": "¿Te interesa trabajar conmigo? Puedo adaptarme a tus necesidades y ayudarte a llevar tu proyecto al siguiente nivel.",
-    "contact": "Contáctame"
+    "contact": "Contáctame",
+    "arquitecture": "Arquitectura"
   },
   "notFound": {
     "title": "Página no encontrada",

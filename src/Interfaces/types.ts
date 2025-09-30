@@ -17,6 +17,7 @@ export interface ExperienceResponsive {
 }
 export interface ProyectResponsive {
   urlImage: UrlImage;
+  detail: string;
   details: Details;
   slug: string;
   _id: string;
@@ -29,6 +30,7 @@ export interface ProyectResponsive {
   resume: string;
   objectives: string[];
   learnings: string[];
+  arquitecture: Arquitecture[];
   outStanding: boolean;
   __v: number;
 }
@@ -41,12 +43,28 @@ export interface UrlImage {
 export interface Details {
   role: string;
   time: string;
+  status: string;
+  team?: string;
+}
+
+export interface Arquitecture {
+  title: string;
+  badges: string[];
+  detail: KeyValue[];
+  colSpan: number;
+}
+
+export interface KeyValue {
+  key: string;
+  value: string;
 }
 
 export interface Image {
   url: string;
   alt: string;
   _id: string;
+  colSpan: number;
+  rowSpan: number;
 }
 export interface Tecnology {
   urlImage: string;

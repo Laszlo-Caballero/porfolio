@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsString, IsUrl } from 'class-validator';
+import { IsNotEmpty, IsNumber, IsOptional, IsPositive, IsString, IsUrl } from 'class-validator';
 
 export class ImageDto {
   @IsString()
@@ -9,4 +9,9 @@ export class ImageDto {
   @IsString()
   @IsNotEmpty()
   alt: string;
+
+  @IsNumber()
+  @IsPositive()
+  @IsOptional()
+  colSpan?: number = 1;
 }

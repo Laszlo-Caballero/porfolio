@@ -8,6 +8,11 @@ export class DetailProyectDto {
   @IsString()
   @IsNotEmpty()
   time: string;
+
+  @IsString()
+  @IsNotEmpty()
+  status: string;
+
   @IsString()
   @IsOptional()
   team?: string;

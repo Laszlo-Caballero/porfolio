@@ -3,6 +3,7 @@ import mongoose, { Schema } from 'mongoose';
 const projectsSchema = new Schema({
   projectId: String,
   title: String,
+  detail: String,
   description: String,
   slug: String,
   urlImage: {
@@ -18,6 +19,14 @@ const projectsSchema = new Schema({
     {
       url: String,
       alt: String,
+      colSpan: {
+        type: Number,
+        default: 1,
+      },
+      rowSpan: {
+        type: Number,
+        default: 1,
+      },
     },
   ],
   tecnologies: [String],
@@ -28,6 +37,7 @@ const projectsSchema = new Schema({
       type: String,
       required: false,
     },
+    status: String,
   },
   resume: String,
   objectives: [String],
@@ -36,6 +46,28 @@ const projectsSchema = new Schema({
     type: Boolean,
     default: false,
   },
+  arquitecture: [
+    {
+      title: String,
+      badges: {
+        type: [String],
+        default: [],
+      },
+      detail: {
+        type: [
+          {
+            key: String,
+            value: String,
+          },
+        ],
+        default: [],
+      },
+      colSpan: {
+        type: Number,
+        default: 1,
+      },
+    },
+  ],
 });
 
 const Project = mongoose.models.Proyects || mongoose.model('Proyects', projectsSchema);

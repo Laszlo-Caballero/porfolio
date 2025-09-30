@@ -11,11 +11,16 @@ import {
 import { DetailProyectDto } from './detail.dto';
 import { ImageDto } from './image.dto';
 import { Type } from 'class-transformer';
+import { ArquitectureDto } from './arquitecture.dto';
 
 export class CreateProyectDto {
   @IsString()
   @IsNotEmpty()
   title: string;
+
+  @IsString()
+  @IsNotEmpty()
+  detail: string;
 
   @IsString()
   @IsNotEmpty()
@@ -31,7 +36,7 @@ export class CreateProyectDto {
 
   @ValidateNested({ each: true })
   @ArrayNotEmpty()
-  @ArrayMinSize(4)
+  @ArrayMinSize(3)
   @Type(() => ImageDto)
   images: ImageDto[];
 
@@ -68,4 +73,10 @@ export class CreateProyectDto {
   @IsBoolean()
   @IsOptional()
   outStanding?: boolean = false;
+
+  @ValidateNested({ each: true })
+  @IsArray()
+  @Type(() => ArquitectureDto)
+  @ArrayMinSize(2)
+  arquitecture: ArquitectureDto[];
 }
