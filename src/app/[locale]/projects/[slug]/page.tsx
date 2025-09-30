@@ -97,7 +97,7 @@ export default async function Details({
           alt={urlImage.alt}
           width={120}
           height={120}
-          className="border-primary-gray-2 size-[120px] rounded-3xl border"
+          className="border-primary-gray-2 size-[120px] rounded-3xl border object-cover"
         />
 
         <div className="flex flex-col">
@@ -171,7 +171,7 @@ export default async function Details({
 
             <Link
               href="/contact"
-              className="flex items-center justify-center rounded-full bg-[#4F7CFF] px-4 py-2 text-sm font-semibold text-white"
+              className="flex items-center justify-center rounded-full bg-[#7A9EFF] px-4 py-2 text-sm font-semibold text-white"
             >
               {t('contact')}
             </Link>

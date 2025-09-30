@@ -13,7 +13,7 @@ export default async function ArquitectureCard({ data }: ArquitectureProps) {
     <section className="bg-primary-black-5 border-primary-gray-2 flex w-full flex-col gap-y-4 rounded-xl border p-[13px]">
       <span className="flex items-center gap-x-2">
         <GrCubes />
-        <p className="font-semibold">{t('arquitecture')}</p>
+        <h2 className="font-semibold">{t('arquitecture')}</h2>
       </span>
 
       <div className="grid grid-cols-2 gap-3">
