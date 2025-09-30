@@ -18,7 +18,7 @@ export async function generateMetadata({
 }: {
   params: Promise<{ slug: string; locale: string }>;
 }): Promise<Metadata> {
-  const { slug } = await params;
+  const { slug, locale } = await params;
 
   const project = await GetProyectCache(slug);
 
@@ -27,6 +27,30 @@ export async function generateMetadata({
     description: project.body
       ? project.body.description
       : 'The project you are looking for does not exist or has been removed.',
+    category: 'projects',
+    creator: 'Laszlo Caballero',
+    keywords: project.body ? project.body.keywords : ['portfolio', 'projects', 'web developer'],
+    openGraph: {
+      type: 'article',
+      authors: ['Laszlo Caballero'],
+      title: project.body ? `${project.body.title} | Projects` : 'Project Not Found',
+      description: project.body
+        ? project.body.description
+        : 'The project you are looking for does not exist or has been removed.',
+      images: project.body ? [project.body.urlImage.url] : [],
+      locale,
+      url: `https://laszlocaballero.vercel.app/projects/${slug}`,
+    },
+    metadataBase: new URL('https://laszlocaballero.vercel.app'),
+    twitter: {
+      title: project.body ? `${project.body.title} | Projects` : 'Project Not Found',
+      description: project.body
+        ? project.body.description
+        : 'The project you are looking for does not exist or has been removed.',
+      card: 'summary_large_image',
+      images: project.body ? [project.body.urlImage.url] : [],
+      creator: '@laszlocaballero',
+    },
   };
 }
 

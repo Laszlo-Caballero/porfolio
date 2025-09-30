@@ -6,6 +6,7 @@ const projectsSchema = new Schema({
   detail: String,
   description: String,
   slug: String,
+  keywords: [String],
   urlImage: {
     url: String,
     alt: String,

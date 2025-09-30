@@ -19,6 +19,7 @@ export interface ProyectResponsive {
   urlImage: UrlImage;
   detail: string;
   details: Details;
+  keywords: string[];
   slug: string;
   _id: string;
   projectId: string;

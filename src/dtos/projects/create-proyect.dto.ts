@@ -18,6 +18,12 @@ export class CreateProyectDto {
   @IsNotEmpty()
   title: string;
 
+  @IsArray()
+  @ArrayNotEmpty()
+  @IsString({ each: true })
+  @IsNotEmpty({ each: true })
+  keywords: string[];
+
   @IsString()
   @IsNotEmpty()
   detail: string;
