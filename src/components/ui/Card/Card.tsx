@@ -51,7 +51,7 @@ export default function Card({
         <Typography variant="p" className="text-sm font-medium text-white">
           {detail}
         </Typography>
-        <div className="flex h-full flex-wrap gap-x-2 gap-y-4">
+        <div className="mt-2 flex h-full flex-wrap gap-x-2 gap-y-4">
           {tecnologies?.map((tecnology, i) => (
             <span
               className="bg-primary-black-3 flex min-w-[59px] items-center justify-center gap-x-2 rounded-full px-2.5 py-1 font-semibold"

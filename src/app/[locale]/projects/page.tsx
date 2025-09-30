@@ -1,7 +1,8 @@
-import React from 'react';
-import ProjectsPage from './MainSection';
+import Card from '@/components/ui/Card/Card';
+import { GetProyects } from '@/Services/GetProyects';
 import { Metadata } from 'next';
 import { getTranslations } from 'next-intl/server';
+
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations('headers.projects');
 
@@ -10,6 +11,28 @@ export async function generateMetadata(): Promise<Metadata> {
     description: t('description'),
   };
 }
-export default function Projects() {
-  return <ProjectsPage />;
+
+export default async function ProjectsPage() {
+  const t = await getTranslations('projects');
+  const data = await GetProyects();
+
+  return (
+    <main className="mb-12 flex h-full w-full flex-1 flex-col">
+      <div className="w-full">
+        <h1 className="text-4xl font-semibold text-white">{t('title')}</h1>
+        <p className="mt-2 text-lg text-gray-400">{t('description')}</p>
+      </div>
+
+      <section className="mt-4 grid grid-cols-4 gap-4">
+        {data.body.map((proyect) => (
+          <Card
+            {...proyect}
+            key={proyect._id}
+            className="col-span-1 row-span-1"
+            outStanding={false}
+          />
+        ))}
+      </section>
+    </main>
+  );
 }
