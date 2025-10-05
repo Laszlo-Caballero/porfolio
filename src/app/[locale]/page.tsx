@@ -25,7 +25,7 @@ export default async function Home() {
   return (
     <main className="flex h-full w-full flex-1 flex-col items-center">
       <Hero />
-      <div className="mt-11 flex w-full flex-col px-9 py-12">
+      <div className="p-md:px-9 mt-11 flex w-full flex-col px-2 py-12">
         <Typography
           variant="span"
           className="flex w-full items-center gap-x-2 text-2xl font-semibold"
@@ -50,7 +50,7 @@ export default async function Home() {
         </div>
       </div>
 
-      <div className="flex w-full flex-col px-9 py-12">
+      <div className="p-md:px-9 flex w-full flex-col px-2 py-12">
         <Typography
           variant="span"
           className="flex w-full items-center gap-x-2 text-2xl font-semibold"
@@ -58,14 +58,20 @@ export default async function Home() {
           <IoCode />
           {t('projects')}
         </Typography>
-        <div className="mt-12 grid grid-cols-6 gap-4">
+        <div className="p-lg:grid-cols-4 p-xl:grid-cols-6 mt-12 grid gap-4">
           {proyects.body.map((proyect, i) => {
-            return <Card key={proyect._id} {...proyect} className={cn(i > 2 && 'col-span-3')} />;
+            return (
+              <Card
+                key={proyect._id}
+                {...proyect}
+                className={cn(i > 2 && 'p-lg:col-span-2 p-xl:col-span-3')}
+              />
+            );
           })}
         </div>
       </div>
 
-      <div className="flex w-full flex-col px-9 py-12">
+      <div className="p-md:px-9 flex w-full flex-col px-2 py-12">
         <Typography
           variant="span"
           className="flex w-full items-center gap-x-2 text-2xl font-semibold"

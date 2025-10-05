@@ -11,9 +11,9 @@ export default function Nav() {
   const pathname = usePathname();
 
   return (
-    <header className="bg-primary-black sticky top-0 z-10 mt-9 flex w-full items-center justify-center px-16">
-      <main className="flex w-full max-w-[1440px] items-center justify-between">
-        <div className="flex gap-x-1">
+    <header className="bg-primary-black p-md:px-16 sticky top-0 z-10 mt-9 flex w-full items-center justify-center px-4">
+      <main className="p-screen flex w-full items-center justify-between">
+        <div className="flex items-center gap-x-1">
           <Image
             alt="logo"
             src={CONST_PAGE.image_header}
@@ -21,9 +21,9 @@ export default function Nav() {
             height={36}
             className="rounded-full"
           />
-          <span className="ml-3 text-2xl font-medium">{CONST_PAGE.name_header}</span>
+          <span className="p-md:text-2xl ml-3 font-medium">{CONST_PAGE.name_header}</span>
         </div>
-        <ul className="flex gap-x-6 py-6 text-xl font-medium">
+        <ul className="p-md:text-xl flex gap-x-6 py-6 text-xs font-medium">
           <li className="cursor-pointer">
             <Link href="/">{t('home')}</Link>
           </li>
@@ -38,7 +38,7 @@ export default function Nav() {
 
         <div className="flex gap-x-3">
           <button
-            className="bg-primary-black-3 text-primary-gray rounded-4xl px-3 py-2.5 font-semibold"
+            className="bg-primary-black-3 text-primary-gray p-md:text-base rounded-4xl px-3 py-2.5 text-xs font-semibold"
             onClick={() => {
               router.push(pathname.replace('/en', '') as any, { locale: 'es' });
             }}
@@ -46,7 +46,7 @@ export default function Nav() {
             ES
           </button>
           <button
-            className="bg-primary-black-3 text-primary-gray rounded-4xl px-3 py-2.5 font-semibold"
+            className="bg-primary-black-3 text-primary-gray p-md:text-base rounded-4xl px-3 py-2.5 text-xs font-semibold"
             onClick={() => {
               router.push(pathname as any, { locale: 'en' });
             }}

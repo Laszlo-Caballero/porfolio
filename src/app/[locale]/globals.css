@@ -10,4 +10,17 @@
   --color-primary-black-5: #0b1220;
   --color-primary-gray-2: #1f2937;
   --font-montserrat: 'Montserrat', sans-serif;
+  --breakpoint-p-2xl: 1920;
+  --breakpoint-p-xl: 1280;
+  --breakpoint-p-lg: 1024;
+  --breakpoint-p-md: 768;
+  --breakpoint-p-sm: 640;
+  --breakpoint-p-xs: 425;
+  --breakpoint-p-xxs: 375;
+}
+
+@layer components {
+  .p-screen {
+    @apply p-2xl:max-w-[1920px] p-xl:max-w-[1280px] p-lg:max-w-[1024px] p-md:max-w-[768px] p-sm:max-w-[640px] p-xs:max-w-[425px] p-xxs:max-w-[375px];
+  }
 }

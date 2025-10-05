@@ -13,7 +13,7 @@ export default function ButtonLink({ children, href, className }: ButtonLinkProp
       href={href}
       target="_blank"
       className={cn(
-        'bg-primary-black-4 flex h-full w-auto items-center gap-x-2.5 rounded-full py-2 pr-6 pl-4 text-[#B8C6D9]',
+        'bg-primary-black-4 p-xl:text-base p-lg:text-xs flex h-full max-h-[40px] w-auto items-center gap-x-2.5 rounded-full py-2 pr-6 pl-4 text-[#B8C6D9]',
         className,
       )}
     >

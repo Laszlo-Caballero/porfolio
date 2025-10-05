@@ -40,7 +40,7 @@ export default function FormContact({ className }: FormContactProps) {
   };
 
   return (
-    <div className={cn('mt-12 mb-40 flex w-full flex-col px-9', className?.container)}>
+    <div className={cn('p-md:px-9 mt-12 mb-40 flex w-full flex-col px-2', className?.container)}>
       <Typography
         variant="span"
         className={cn('flex w-full items-center gap-x-2 text-2xl font-semibold', className?.title)}
@@ -48,7 +48,7 @@ export default function FormContact({ className }: FormContactProps) {
         <FiPhone />
         Contacto
       </Typography>
-      <div className="mt-10 flex gap-x-5">
+      <div className="p-md:flex-row mt-10 flex flex-col-reverse gap-5">
         <form
           className="bg-primary-black-3 border-primary-gray-2 grid grid-cols-2 gap-x-6 gap-y-6 rounded-xl border p-[17px]"
           onSubmit={handleSubmit(handelSubmit)}
@@ -85,7 +85,7 @@ export default function FormContact({ className }: FormContactProps) {
           alt="Imagen de Contacto"
           width={500}
           height={500}
-          className="rounded-xl"
+          className="p-xl:min-w-[500px] p-lg:min-w-[300px] p-md:max-h-none max-h-[100px] w-full rounded-xl object-cover"
         />
       </div>
     </div>

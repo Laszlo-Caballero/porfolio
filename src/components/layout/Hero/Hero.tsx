@@ -22,27 +22,30 @@ export default async function Hero() {
         height={80}
       />
       <div className="flex flex-col gap-y-2 py-5">
-        <Typography variant="h1" className="text-2xl font-semibold">
+        <Typography variant="h1" className="p-xl:text-2xl p-lg:text-lg font-semibold">
           {CONST_PAGE.name} - {t('profession')}
         </Typography>
-        <Typography variant="p" className="text-primary-gray max-w-[1008px] text-xl font-medium">
+        <Typography
+          variant="p"
+          className="text-primary-gray p-xl:text-xl p-lg:text-base max-w-[1008px] font-medium"
+        >
           {t('description')}
         </Typography>
-        <div className="flex h-full items-center gap-x-4">
+        <div className="flex h-full flex-wrap items-center gap-4">
           <ButtonLink href="a">
-            <GithubIcon />
+            <GithubIcon className="p-xl:size-6 p-lg:size-4" />
             Github
           </ButtonLink>
           <ButtonLink href="a">
-            <LinkedlnIcon />
+            <LinkedlnIcon className="p-xl:size-6 p-lg:size-4" />
             Linkedln
           </ButtonLink>
           <ButtonLink href="a">
-            <TelegramIcon />
+            <TelegramIcon className="p-xl:size-6 p-lg:size-4" />
             Telegram
           </ButtonLink>
           <ButtonLink href="a" className="bg-[#4F7CFF] text-white">
-            <DownloadIcon />
+            <DownloadIcon className="p-xl:size-6 p-lg:size-4" />
             Descargar CV
           </ButtonLink>
         </div>

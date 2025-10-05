@@ -40,7 +40,9 @@ export default async function RootLayout({
             className={`bg-primary-black flex min-h-screen w-full flex-col items-center justify-center text-white antialiased`}
           >
             <Nav />
-            <main className="flex h-full w-full max-w-[1440px] flex-1 flex-col">{children}</main>
+            <main className="p-2xl:max-w-[1920px] p-xl:max-w-[1280px] p-lg:max-w-[1024px] flex h-full w-full flex-1 flex-col">
+              {children}
+            </main>
             <Toaster position="top-left" />
           </body>
           <Analytics />
