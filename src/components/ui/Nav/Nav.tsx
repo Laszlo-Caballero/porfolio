@@ -11,7 +11,7 @@ export default function Nav() {
   const pathname = usePathname();
 
   return (
-    <header className="bg-primary-black p-md:px-16 sticky top-0 z-10 mt-9 flex w-full items-center justify-center px-4">
+    <header className="bg-primary-black p-md:px-16 p-md:mt-9 sticky top-0 z-10 mt-2 flex w-full items-center justify-center px-4">
       <main className="p-screen flex w-full items-center justify-between">
         <div className="flex items-center gap-x-1">
           <Image

@@ -19,7 +19,7 @@ export default async function ContactPage() {
       </header>
       <FormContact
         className={{
-          container: 'my-0 px-0',
+          container: 'p-md:px-0 my-0',
           title: 'hidden',
         }}
       />

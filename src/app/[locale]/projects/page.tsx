@@ -17,13 +17,13 @@ export default async function ProjectsPage() {
   const data = await GetProyects();
 
   return (
-    <main className="mb-12 flex h-full w-full flex-1 flex-col">
+    <main className="mb-12 flex h-full w-full flex-1 flex-col px-2">
       <div className="w-full">
         <h1 className="text-4xl font-semibold text-white">{t('title')}</h1>
         <p className="mt-2 text-lg text-gray-400">{t('description')}</p>
       </div>
 
-      <section className="mt-4 grid grid-cols-4 gap-4">
+      <section className="p-lg:grid-cols-2 p-xl:grid-cols-4 mt-4 grid gap-4">
         {data.body.map((proyect) => (
           <Card
             {...proyect}
