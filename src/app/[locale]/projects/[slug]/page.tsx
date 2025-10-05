@@ -91,13 +91,13 @@ export default async function Details({
         {t('title')} / {title}
       </span>
 
-      <section className="flex gap-x-4">
+      <section className="p-md:flex-row flex flex-col gap-4">
         <Image
           src={urlImage.url}
           alt={urlImage.alt}
           width={120}
           height={120}
-          className="border-primary-gray-2 size-[120px] rounded-3xl border object-cover"
+          className="border-primary-gray-2 p-md:size-[120px] w-full rounded-3xl border object-cover"
         />
 
         <div className="flex flex-col">
@@ -107,14 +107,14 @@ export default async function Details({
           <Typography variant="p" className="mt-2 text-lg text-gray-400">
             {description}
           </Typography>
-          <ButtonLink href={githubUrl} className="mt-1 max-w-max">
+          <ButtonLink href={githubUrl} className="p-md:max-w-max mt-1">
             <GithubIcon />
             Github
           </ButtonLink>
         </div>
       </section>
-      <section className="flex gap-x-4">
-        <article className="mt-2 flex w-[70%] flex-col gap-y-4">
+      <section className="p-lg:flex-row flex flex-col-reverse gap-4">
+        <article className="p-lg:w-[70%] mt-2 flex w-full flex-col gap-y-4">
           <div className="grid grid-cols-2 gap-4">
             {images.map((image) => (
               <Image
@@ -166,7 +166,7 @@ export default async function Details({
               ))}
             </ul>
           </div>
-          <div className="bg-primary-black-5 border-primary-gray-2 flex gap-x-12 rounded-2xl border p-4">
+          <div className="bg-primary-black-5 border-primary-gray-2 p-sm:flex-row p-sm:gap-y-0 flex flex-col gap-x-12 gap-y-2 rounded-2xl border p-4">
             <p className="font-medium">{t('interest')}</p>
 
             <Link
@@ -178,7 +178,7 @@ export default async function Details({
           </div>
           <ArquitectureCard data={arquitecture} />
         </article>
-        <article className="sticky top-20 flex h-full w-[30%] flex-col gap-y-4">
+        <article className="p-lg:w-[30%] p-lg:sticky top-20 flex h-full w-full flex-col gap-y-4">
           <div className="bg-primary-black-5 border-primary-gray-2 rounded-2xl border p-4">
             <span className="flex items-center gap-1 font-semibold">
               <TbAlertCircle />

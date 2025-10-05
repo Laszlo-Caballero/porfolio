@@ -27,7 +27,7 @@ export default async function ArquitectureCard({ data }: ArquitectureProps) {
           >
             <h3 className="mb-2 text-xl font-semibold">{item.title}</h3>
             {item.badges && (
-              <div className="mt-2 flex flex-wrap gap-2">
+              <div className="p-sm:flex-row mt-2 flex flex-col flex-wrap gap-2">
                 {item.badges.map((badge, j) => (
                   <span className="border-primary-gray-2 rounded-xl border px-2 py-1" key={j}>
                     {badge}
