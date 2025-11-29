@@ -85,7 +85,7 @@ export default function FormContact({ className }: FormContactProps) {
           alt="Imagen de Contacto"
           width={500}
           height={500}
-          className="p-xl:min-w-[500px] p-lg:min-w-[300px] p-md:max-h-none max-h-[100px] w-full rounded-xl object-cover"
+          className="p-xl:min-w-[500px] p-lg:min-w-[300px] p-md:max-h-none max-h-[100px] w-full max-w-[600px] rounded-xl object-cover"
         />
       </div>
     </div>
