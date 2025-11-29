@@ -17,7 +17,7 @@ export default async function ProjectsPage() {
   const data = await GetProyects();
 
   return (
-    <main className="mb-12 flex h-full w-full flex-1 flex-col px-2">
+    <main className="p-md:px-16 mb-12 flex h-full w-full flex-1 flex-col px-4">
       <div className="w-full">
         <h1 className="text-4xl font-semibold text-white">{t('title')}</h1>
         <p className="mt-2 text-lg text-gray-400">{t('description')}</p>
