@@ -87,7 +87,7 @@ export default async function Details({
   } = data.body!;
 
   return (
-    <main className="mb-12 flex h-full w-full flex-col gap-y-3">
+    <main className="p-md:px-16 mb-12 flex h-full w-full flex-col gap-y-3 px-4">
       <span className="font-medium text-[#7E8A97]">
         {t('title')} / {title}
       </span>
