@@ -26,6 +26,7 @@ export interface ProyectResponsive {
   title: string;
   description: string;
   githubUrl: string;
+  githubBackendUrl?: string;
   images: Image[];
   tecnologies: string[];
   resume: string;

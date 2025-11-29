@@ -12,6 +12,10 @@ const projectsSchema = new Schema({
     alt: String,
   },
   githubUrl: String,
+  githubBackendUrl: {
+    type: String,
+    required: false,
+  },
   demoUrl: {
     type: String,
     required: false,

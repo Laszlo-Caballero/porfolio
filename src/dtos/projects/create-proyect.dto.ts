@@ -50,6 +50,10 @@ export class CreateProyectDto {
   @IsNotEmpty()
   githubUrl: string;
 
+  @IsOptional()
+  @IsString()
+  githubBackendUrl?: string;
+
   @IsArray()
   @ArrayNotEmpty()
   @IsString({ each: true })

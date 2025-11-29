@@ -76,6 +76,7 @@ export default async function Details({
     description,
     urlImage,
     githubUrl,
+    githubBackendUrl,
     images,
     details,
     tecnologies,
@@ -111,6 +112,12 @@ export default async function Details({
             <GithubIcon />
             Github
           </ButtonLink>
+          {githubBackendUrl && (
+            <ButtonLink href={githubBackendUrl} className="p-md:max-w-max mt-1">
+              <GithubIcon />
+              Github Backend
+            </ButtonLink>
+          )}
         </div>
       </section>
       <section className="p-lg:flex-row flex flex-col-reverse gap-4">
