@@ -173,9 +173,8 @@ export default async function Details({
               ))}
             </ul>
           </div>
-          <div className="bg-primary-black-5 border-primary-gray-2 p-sm:flex-row p-sm:gap-y-0 flex flex-col gap-x-12 gap-y-2 rounded-2xl border p-4">
+          <div className="bg-primary-black-5 border-primary-gray-2 p-sm:flex-row p-sm:gap-y-0 flex flex-col items-center gap-x-12 gap-y-2 rounded-2xl border p-4">
             <p className="font-medium">{t('interest')}</p>
-
             <Link
               href="/contact"
               className="flex items-center justify-center rounded-full bg-[#7A9EFF] px-4 py-2 text-sm font-semibold text-white"
