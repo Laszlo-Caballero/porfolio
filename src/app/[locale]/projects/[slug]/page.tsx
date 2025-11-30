@@ -128,8 +128,8 @@ export default async function Details({
                 key={image._id}
                 src={image.url}
                 alt={image.alt}
-                width={624}
-                height={280}
+                width={1240}
+                height={618}
                 className="w-full rounded-xl first:col-span-2 last:col-span-2"
               />
             ))}
