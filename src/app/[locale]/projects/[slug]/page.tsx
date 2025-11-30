@@ -108,16 +108,18 @@ export default async function Details({
           <Typography variant="p" className="mt-2 text-lg text-gray-400">
             {description}
           </Typography>
-          <ButtonLink href={githubUrl} className="p-md:max-w-max mt-1">
-            <GithubIcon />
-            Github
-          </ButtonLink>
-          {githubBackendUrl && (
-            <ButtonLink href={githubBackendUrl} className="p-md:max-w-max mt-1">
+          <span className="flex items-center gap-2">
+            <ButtonLink href={githubUrl} className="p-md:max-w-max mt-1">
               <GithubIcon />
-              Github Backend
+              Github
             </ButtonLink>
-          )}
+            {githubBackendUrl && (
+              <ButtonLink href={githubBackendUrl} className="p-md:max-w-max mt-1">
+                <GithubIcon />
+                Github Backend
+              </ButtonLink>
+            )}
+          </span>
         </div>
       </section>
       <section className="p-lg:flex-row flex flex-col-reverse gap-4">
