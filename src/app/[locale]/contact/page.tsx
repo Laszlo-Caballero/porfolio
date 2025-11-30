@@ -12,7 +12,7 @@ export default async function ContactPage() {
   const t = await getTranslations('contact');
 
   return (
-    <main className="mt-12 flex h-full w-full flex-1 flex-col">
+    <main className="p-md:px-16 mt-12 flex h-full w-full flex-1 flex-col px-4">
       <header className="bg-primary-black-5 border-primary-gray-2 flex w-full flex-col rounded-xl border p-[21px]">
         <h1 className="text-2xl font-semibold">{t('title')}</h1>
         <p className="text-primary-gray mt-1">{t('description')}</p>
