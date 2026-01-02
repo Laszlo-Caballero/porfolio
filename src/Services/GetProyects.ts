@@ -1,90 +1,39 @@
 import { ProyectResponsive, Responsive } from '@/Interfaces/types';
-import connectMongoDB from '@/lib/mongo';
-import Project from '@/schemas/projects/project.schema';
 import { cache } from 'react';
 
 export async function GetProyects(): Promise<Responsive<ProyectResponsive[]>> {
-  await connectMongoDB();
+  const data = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/public/proyects`, {
+    cache: 'no-store',
+  });
 
-  const data = await Project.find();
+  const json = await data.json();
 
-  const parseData = data.map((item) => {
-    return {
-      ...item.toObject(),
-      _id: item._id.toString(),
-    };
-  }) as ProyectResponsive[];
-
-  const outStanding = parseData.filter((item) => item.outStanding);
-
-  if (outStanding.length > 0) {
-    parseData.sort((a, b) => {
-      if (a.outStanding && !b.outStanding) return -1;
-      if (!a.outStanding && b.outStanding) return 1;
-      return 0;
-    });
-  }
-
-  return {
-    body: parseData,
-    message: 'All experiences',
-    status: 200,
-  };
+  return json;
 }
 
-export async function GetProyectsLimit(limit: number): Promise<Responsive<ProyectResponsive[]>> {
-  await connectMongoDB();
-  const data = await Project.find().limit(limit);
+export async function GetProyectsLimit(): Promise<Responsive<ProyectResponsive[]>> {
+  const data = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/public/proyects/outstanding`, {
+    cache: 'no-store',
+  });
+  const json = await data.json();
 
-  const parseData = data.map((item) => {
-    return {
-      ...item.toObject(),
-      _id: item._id.toString(),
-    };
-  }) as ProyectResponsive[];
-
-  const outStanding = parseData.filter((item) => item.outStanding);
-
-  if (outStanding.length > 0) {
-    parseData.sort((a, b) => {
-      if (a.outStanding && !b.outStanding) return -1;
-      if (!a.outStanding && b.outStanding) return 1;
-      return 0;
-    });
-  }
-
-  return {
-    body: parseData,
-    message: 'All experiences',
-    status: 200,
-  };
+  return json;
 }
 
 export async function GetProyectBySlug(
   slug: string,
 ): Promise<Responsive<ProyectResponsive | null>> {
-  await connectMongoDB();
+  const data = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/public/proyects/slug/${slug}`, {
+    cache: 'no-store',
+  });
 
-  const data = await Project.findOne({ slug: slug });
-
-  if (!data) {
-    return {
-      body: null,
-      message: 'Project not found',
-      status: 404,
-    };
+  if (!data.ok) {
+    return data.json();
   }
 
-  const parseData = {
-    ...data.toObject(),
-    _id: data._id.toString(),
-  } as ProyectResponsive;
+  const json = await data.json();
 
-  return {
-    body: parseData,
-    message: 'Project found',
-    status: 200,
-  };
+  return json;
 }
 
 export const GetProyectCache = cache(async (slug: string) => {

@@ -1,20 +1,11 @@
-import { Responsive, Tecnologies } from "@/Interfaces/types";
-import connectMongoDB from "@/lib/mongo";
-import Tecnologie from "@/schemas/tecnologie/tecnologie.schema";
+import { Responsive, Tecnologies } from '@/Interfaces/types';
 
 export async function GetAllTecnologies(): Promise<Responsive<Tecnologies[]>> {
-  await connectMongoDB();
+  const data = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/public/tecnologies`, {
+    cache: 'no-store',
+  });
 
-  const tecnologies = await Tecnologie.find();
+  const jsonData = await data.json();
 
-  return {
-    message: "Tecnologies retrieved successfully",
-    body: tecnologies.map((tecnology) => ({
-      _id: tecnology._id.toString(),
-      urlImage: tecnology.urlImage,
-      altImage: tecnology.altImage,
-      __v: tecnology.__v,
-    })),
-    status: 200,
-  };
+  return jsonData;
 }
