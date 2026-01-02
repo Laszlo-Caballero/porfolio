@@ -16,7 +16,7 @@ import { Tecnologie, TecnologieContainer } from '@/components/ui/Tenologie/Tecno
 export default async function Home() {
   const [data, proyects, tecnologies] = await Promise.all([
     GetExperience(),
-    GetProyectsLimit(5),
+    GetProyectsLimit(),
     GetAllTecnologies(),
   ]);
 

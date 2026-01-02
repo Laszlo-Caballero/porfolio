@@ -1,24 +1,11 @@
-import { ExperienceResponsive, Responsive } from "@/Interfaces/types";
-import connectMongoDB from "@/lib/mongo";
-import { Experience } from "@/schemas/experience/experience.schema";
+import { ExperienceResponsive, Responsive } from '@/Interfaces/types';
 
-export async function GetExperience(): Promise<
-  Responsive<ExperienceResponsive[]>
-> {
-  await connectMongoDB();
+export async function GetExperience(): Promise<Responsive<ExperienceResponsive[]>> {
+  const data = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/public/experience`, {
+    cache: 'no-store',
+  });
 
-  const data = await Experience.find();
+  const jsonData = await data.json();
 
-  const parseData = data.map((item) => {
-    return {
-      ...item.toObject(),
-      _id: item._id.toString(),
-    };
-  }) as ExperienceResponsive[];
-
-  return {
-    body: parseData,
-    message: "All experiences",
-    status: 200,
-  };
+  return jsonData;
 }

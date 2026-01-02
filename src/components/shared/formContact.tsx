@@ -26,7 +26,7 @@ export default function FormContact({ className }: FormContactProps) {
 
   const { mutate } = useMutation<EmailSchemaType>({
     mutationFn: async (data) => {
-      const res = await axios.post('/api/email', data);
+      const res = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/email`, data);
       return res.data;
     },
   });
